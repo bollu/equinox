@@ -1,0 +1,306 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 132.0,
+		"selected_items":
+		[
+			[
+				"remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"remp",
+				"Package Control: Remove Package"
+			],
+			[
+				"color",
+				"Color Switch: Install Scheme"
+			],
+			[
+				"LIST",
+				"Package Control: List Packages"
+			],
+			[
+				"ctags",
+				"CTags: Rebuild Tags"
+			],
+			[
+				"pyth",
+				"Set Syntax: Python"
+			],
+			[
+				"rein",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"set s",
+				"Set Syntax: Rust"
+			],
+			[
+				"goto",
+				"SublimeBookmarks: Goto Bookmark"
+			],
+			[
+				"toggle ",
+				"SublimeBookmarks: Toggle Current Line"
+			],
+			[
+				"Ad",
+				"SublimeBookmarks: Add Bookmark"
+			],
+			[
+				"ad",
+				"SublimeBookmarks: Add Bookmark"
+			],
+			[
+				"add book",
+				"SublimeBookmarks: Add Bookmark"
+			],
+			[
+				"add boko",
+				"SublimeBookmarks: Add Bookmark"
+			],
+			[
+				"isnta",
+				"Package Control: Install Package"
+			],
+			[
+				"bookmark",
+				"Bookmarks: Clear All"
+			]
+		],
+		"width": 507.0
+	},
+	"console":
+	{
+		"height": 253.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/bollu/prog/cpp/spy/src/app/Globals.h",
+		"/home/bollu/prog/cpp/spy/src/app/Scroll.cc",
+		"/home/bollu/prog/rust/equinox/makefile",
+		"/home/bollu/prog/rust/equinox/src/main.rs",
+		"/home/bollu/prog/rust/equinox/bin/Tupfile",
+		"/home/bollu/.config/sublime-text-3/Packages/Zen Tabs/Default.sublime-keymap",
+		"/home/bollu/.config/sublime-text-3/Packages/User/ZenTabs.sublime-settings",
+		"/home/bollu/.config/sublime-text-3/Packages/Zen Tabs/ZenTabs.sublime-settings",
+		"/home/bollu/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
+		"/home/bollu/prog/cpp/spy/src/app/Panes.cc",
+		"/home/bollu/.config/sublime-text-3/Packages/TidyTabs-Sublime/Default (Linux).sublime-keymap",
+		"/home/bollu/.config/sublime-text-3/Packages/User/lessTabs.sublime-settings",
+		"/home/bollu/.config/sublime-text-3/Packages/TidyTabs-Sublime/TidyTabs.sublime-settings",
+		"/home/bollu/.config/sublime-text-3/Packages/Less Tabs/lessTabs.sublime-settings",
+		"/home/bollu/prog/cpp/spy/src/app/Panes.h",
+		"/home/bollu/.config/sublime-text-3/Packages/CTags/Default.sublime-keymap",
+		"/home/bollu/.config/sublime-text-3/Packages/User/Default (Linux).sublime-keymap",
+		"/home/bollu/prog/cpp/spy/src/app/Scroll.h",
+		"/home/bollu/prog/cpp/spy/src/core/Graphics/Rendering.h",
+		"/home/bollu/prog/cpp/spy/src/core/Graphics/Pane.h",
+		"/home/bollu/prog/cpp/spy/src/core/Graphics/Pane.cpp",
+		"/home/bollu/.config/sublime-text-3/Packages/Default/Default (Linux).sublime-keymap",
+		"/home/bollu/prog/cpp/spy/src/core/Graphics/Rendering.cpp",
+		"/home/bollu/prog/build/glfw/Makefile",
+		"/home/bollu/prog/rust/reFUSE/src/main.rs",
+		"/home/bollu/.zshrc",
+		"/home/bollu/prog/build/rust-sfml/src/rsfml/lib.rs",
+		"/home/bollu/dotfiles/install.rb",
+		"/home/bollu/dotfiles/makefile",
+		"/home/bollu/scripts/repo",
+		"/home/bollu/prog/build/vim/PKGBUILD",
+		"/home/bollu/prog/build/rust-sfml/src/rsfml/audio/mod.rs",
+		"/home/bollu/prog/rust/reFUSE/bin/Tupfile",
+		"/home/bollu/prog/build/rust-http/src/examples/client/main.rs",
+		"/home/bollu/prog/build/rust-sfml/Makefile",
+		"/home/bollu/scripts/__repo__",
+		"/home/bollu/.config/sublime-text-3/Packages/SublimeBookmarks/Default.sublime-keymap",
+		"/home/bollu/prog/build/rust-fuse/examples/hello.rs",
+		"/home/bollu/prog/build/rust-fuse/examples/null.rs",
+		"/home/bollu/prog/build/ncurses-rs/Makefile",
+		"/home/bollu/.config/sublime-text-3/Packages/SublimeBookmarks/Context.sublime-menu",
+		"/home/bollu/.config/sublime-text-3/Packages/sublimeBookmark/sublimebookmark.py",
+		"/home/bollu/.config/sublime-text-3/Packages/sublimeBookmark/ui.py",
+		"/home/bollu/.config/sublime-text-3/Packages/sublimeBookmark/bookmarkWatcher.py",
+		"/home/bollu/.config/sublime-text-3/Packages/sublimeBookmark/bookmark.py",
+		"/home/bollu/.config/sublime-text-3/Packages/sublimeBookmark/__init.py__",
+		"/home/bollu/.config/sublime-text-3/Packages/sublimeBookmark/README.md",
+		"/home/bollu/.config/sublime-text-3/Packages/sublimeBookmark/Main.sublime-menu",
+		"/home/bollu/.config/sublime-text-3/Packages/sublimeBookmark/LICENSE",
+		"/home/bollu/.config/sublime-text-3/Packages/sublimeBookmark/Default.sublime-keymap",
+		"/home/bollu/.config/sublime-text-3/Packages/sublimeBookmark/Context.sublime-menu",
+		"/home/bollu/.config/sublime-text-3/Packages/sublimeBookmark/Commands.sublime-commands",
+		"/home/bollu/.config/sublime-text-2/Packages/sublimeBookmark/visibilityHandler.py",
+		"/home/bollu/.gtkrc-2.0",
+		"/home/bollu/.config/sublime-text-3/Packages/sublimeBookmark/common.py",
+		"/home/bollu/.config/sublime-text-3/Packages/sublimeBookmark/messages.json",
+		"/home/bollu/.config/sublime-text-3/Packages/sublimeBookmark/visibilityHandler.py",
+		"/home/bollu/.config/gtk-2.0/settings.ini",
+		"/home/bollu/.config/sublime-text-3/Packages/User/Default.sublime-keymap",
+		"/home/bollu/.config/sublime-text-3/Packages/Sublime Bookmarks/Default.sublime-keymap",
+		"/etc/ntp.conf",
+		"/home/bollu/.config/sublime-text-3/Packages/Default/Preferences.sublime-settings"
+	],
+	"find":
+	{
+		"height": 28.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"cpp",
+			"HandleMainScrollEvent",
+			"ScollMainBar",
+			"mousePos",
+			"\n	",
+			"SCROLLBAR_FRONT",
+			"g_mousePos",
+			"InitScrollers",
+			"INTERFACE_LINK_LIBRARIES",
+			"pthread",
+			"HashMap",
+			"_request",
+			"    //",
+			"RequestWriter",
+			"make_and_print_request",
+			"tree"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"l_mousePos"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 28.0
+	},
+	"input":
+	{
+		"height": 37.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "equinox.sublime-project",
+	"replace":
+	{
+		"height": 52.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"gl",
+				"app/Globals.h"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 72.0,
+		"selected_items":
+		[
+		],
+		"width": 392.0
+	},
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 224.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
