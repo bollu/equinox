@@ -7,7 +7,7 @@ build:
 run:
 	@echo 
 	
-	@bin/equinox
+	@RUST_LOG=debug ./equinox
 	
 	@echo
 	@echo "---------"
