@@ -3,17 +3,52 @@
 	{
 		"selected_items":
 		[
+			[
+				"obj",
+				"object"
+			]
 		]
 	},
 	"buffers":
 	[
+		{
+			"contents": "use std::vec_ng::Vec;\nuse std::hashmap::HashMap;\nuse std::to_str::ToStr;\n\npub trait StateModifier {\n	fn Init(world: &mut World) -> ();\n	fn Progress(world:  &mut World, dt: f32) -> ();  \n}\n\n\npub struct World {\n	//mapes BaseCode to Tagger\n	taggers: ~[Tagger ],\n	//maps BaseCode + UniqueCode\n	objects: ~[Object], \n}\n\nimpl World {\n	pub fn genUniqueName(&mut self, baseName: ~str) -> ~str {\n		for tagger in self.taggers.mut_iter() {\n			if tagger.getBaseName() == baseName {\n				return tagger.genName(); \n			}\n		}\n		//tagger not found\n		let mut tagger = Tagger::new(baseName);\n		//self.taggers.add(tagger);\n		tagger.genName()\n	}\n\n	pub fn Update(&mut self, dt : f32) -> () {\n		for object in self.objects.mut_iter(){\n			object.step(self, dt);\n		}\n	}\n}\n\npub struct Tagger {\n	baseName: ~str,\n	count: uint,\n}\n\n\nimpl Tagger {\n	pub fn new (baseName: ~str) -> Tagger { \n		Tagger { baseName: baseName, count: 0 }\n\n	}\n\n	pub fn genName(&mut self) -> ~str {\n		self.count = self.count + 1;\n		format!(\"{}{}\", self.baseName, self.count)\n	}\n\n	pub fn getBaseName(&self) -> ~str {\n		self.baseName\n	}\n}\n\n\npub struct Object {\n	name: ~str,\n	modifiers: Vec<~StateModifier>,\n}\n\nimpl Object {\n	pub fn new(&mut self, archetype: ~str, world: &mut World ) -> () {\n		self.name = world.genUniqueName(archetype);\n	}\n\n	pub fn step(&mut self, world: ~World, dt: f32) -> (){\n		\n	}\n}\n\n",
+			"file": "src/WorldState/mod.rs",
+			"file_size": 1343,
+			"file_write_time": 130379109400852897,
+			"settings":
+			{
+				"buffer_size": 1345,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/main.rs",
+			"settings":
+			{
+				"buffer_size": 1453,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 132.0,
+		"height": 156.0,
 		"selected_items":
 		[
+			[
+				"pyt",
+				"Set Syntax: Python"
+			],
+			[
+				"gist",
+				"Gist: Open Gist in Browser"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
 			[
 				"remo",
 				"Package Control: Remove Package"
@@ -21,6 +56,10 @@
 			[
 				"insta",
 				"Package Control: Install Package"
+			],
+			[
+				"rein",
+				"Indentation: Reindent Lines"
 			],
 			[
 				"remp",
@@ -41,10 +80,6 @@
 			[
 				"pyth",
 				"Set Syntax: Python"
-			],
-			[
-				"rein",
-				"Indentation: Reindent Lines"
 			],
 			[
 				"set s",
@@ -104,10 +139,30 @@
 	},
 	"file_history":
 	[
+		"/home/bollu/prog/rust/equinox/bin/makefile",
+		"/home/bollu/.config/sublime-text-3/Packages/User/Gist.sublime-settings",
+		"/home/bollu/prog/rust/equinox/src/main.rs",
+		"/home/bollu/prog/rust/equinox/src/WorldState/mod.rs",
+		"/home/bollu/prog/build/dogecoin/README.md",
+		"/home/bollu/prog/build/dogecoin/INSTALL",
+		"/home/bollu/.zshrc",
+		"/home/bollu/.neovimrc",
+		"/home/bollu/software/neovim/CMakeLists.txt",
+		"/home/bollu/software/neovim/src/CMakeLists.txt",
+		"/home/bollu/software/neovim/neovim.rb",
+		"/home/bollu/software/neovim/Makefile",
+		"/home/bollu/software/neovim/config/CMakeLists.txt",
+		"/home/bollu/software/neovim/src/version.c",
+		"/home/bollu/prog/build/neovim/config/CMakeLists.txt",
+		"/home/bollu/software/neovim/src/version.h",
+		"/home/bollu/.config/sublime-text-3/Packages/Gist/Gist.sublime-settings",
+		"/home/bollu/prog/rust/equinox/src/layer/WorldState.rs",
+		"/home/bollu/prog/rust/equinox/src/mod/WorldState.rs",
+		"/home/bollu/prog/rust/equinox/makefile",
+		"/home/bollu/prog/rust/equinox/.gitignore",
+		"/home/bollu/prog/rust/equinox/src/Tupfile",
 		"/home/bollu/prog/cpp/spy/src/app/Globals.h",
 		"/home/bollu/prog/cpp/spy/src/app/Scroll.cc",
-		"/home/bollu/prog/rust/equinox/makefile",
-		"/home/bollu/prog/rust/equinox/src/main.rs",
 		"/home/bollu/prog/rust/equinox/bin/Tupfile",
 		"/home/bollu/.config/sublime-text-3/Packages/Zen Tabs/Default.sublime-keymap",
 		"/home/bollu/.config/sublime-text-3/Packages/User/ZenTabs.sublime-settings",
@@ -129,7 +184,6 @@
 		"/home/bollu/prog/cpp/spy/src/core/Graphics/Rendering.cpp",
 		"/home/bollu/prog/build/glfw/Makefile",
 		"/home/bollu/prog/rust/reFUSE/src/main.rs",
-		"/home/bollu/.zshrc",
 		"/home/bollu/prog/build/rust-sfml/src/rsfml/lib.rs",
 		"/home/bollu/dotfiles/install.rb",
 		"/home/bollu/dotfiles/makefile",
@@ -169,7 +223,7 @@
 	],
 	"find":
 	{
-		"height": 28.0
+		"height": 38.0
 	},
 	"find_in_files":
 	{
@@ -183,6 +237,11 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"python",
+			"p",
+			"py",
+			"python",
+			"Building",
 			"cpp",
 			"HandleMainScrollEvent",
 			"ScollMainBar",
@@ -217,8 +276,72 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "src/WorldState/mod.rs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1345,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1338,
+								1338
+							]
+						],
+						"settings":
+						{
+							"bs_sintax": "rust",
+							"buffer_scroll_name": "1d37c71a",
+							"syntax": "Packages/Rust/Rust.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 720.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "src/main.rs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1453,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								216,
+								216
+							]
+						],
+						"settings":
+						{
+							"bs_sintax": "rust",
+							"buffer_scroll_name": "1c53907c",
+							"syntax": "Packages/Rust/Rust.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 240.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
 			]
 		}
 	],

@@ -1,17 +1,29 @@
+
 extern crate native;
 extern crate rsfml;
+
 
 use rsfml::system::Vector2f;
 use rsfml::window::{ContextSettings, VideoMode, event, Close};
 use rsfml::graphics::{RenderWindow, CircleShape, Color};
+
+mod World;
+mod Components;
+mod Init;
+
+
 
 #[start]
 fn start(argc: int, argv: **u8) -> int {
     native::start(argc, argv, main)
 }
 
-fn main () -> () {
-     // Create the window of the application
+
+
+fn main () ->   () {
+    let settings = Init::Settings::new(~"settings");
+    debug!("ajsdopqwe");
+
     let setting = ContextSettings::default();
     let mut window = match RenderWindow::new(VideoMode::new_init(800, 600, 32), "SFML Example", Close, &setting) {
         Some(window) => window,
