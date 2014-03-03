@@ -22,7 +22,7 @@ fn start(argc: int, argv: **u8) -> int {
 
 fn main () ->   () {
     let settings = Init::Settings::new(~"settings");
-    debug!("ajsdopqwe");
+    
 
     let setting = ContextSettings::default();
     let mut window = match RenderWindow::new(VideoMode::new_init(800, 600, 32), "SFML Example", Close, &setting) {

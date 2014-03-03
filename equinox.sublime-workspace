@@ -4,6 +4,18 @@
 		"selected_items":
 		[
 			[
+				"float",
+				"floatPair"
+			],
+			[
+				"va",
+				"valueStr"
+			],
+			[
+				"con",
+				"contents"
+			],
+			[
 				"obj",
 				"object"
 			]
@@ -12,13 +24,18 @@
 	"buffers":
 	[
 		{
-			"contents": "use std::vec_ng::Vec;\nuse std::hashmap::HashMap;\nuse std::to_str::ToStr;\n\npub trait StateModifier {\n	fn Init(world: &mut World) -> ();\n	fn Progress(world:  &mut World, dt: f32) -> ();  \n}\n\n\npub struct World {\n	//mapes BaseCode to Tagger\n	taggers: ~[Tagger ],\n	//maps BaseCode + UniqueCode\n	objects: ~[Object], \n}\n\nimpl World {\n	pub fn genUniqueName(&mut self, baseName: ~str) -> ~str {\n		for tagger in self.taggers.mut_iter() {\n			if tagger.getBaseName() == baseName {\n				return tagger.genName(); \n			}\n		}\n		//tagger not found\n		let mut tagger = Tagger::new(baseName);\n		//self.taggers.add(tagger);\n		tagger.genName()\n	}\n\n	pub fn Update(&mut self, dt : f32) -> () {\n		for object in self.objects.mut_iter(){\n			object.step(self, dt);\n		}\n	}\n}\n\npub struct Tagger {\n	baseName: ~str,\n	count: uint,\n}\n\n\nimpl Tagger {\n	pub fn new (baseName: ~str) -> Tagger { \n		Tagger { baseName: baseName, count: 0 }\n\n	}\n\n	pub fn genName(&mut self) -> ~str {\n		self.count = self.count + 1;\n		format!(\"{}{}\", self.baseName, self.count)\n	}\n\n	pub fn getBaseName(&self) -> ~str {\n		self.baseName\n	}\n}\n\n\npub struct Object {\n	name: ~str,\n	modifiers: Vec<~StateModifier>,\n}\n\nimpl Object {\n	pub fn new(&mut self, archetype: ~str, world: &mut World ) -> () {\n		self.name = world.genUniqueName(archetype);\n	}\n\n	pub fn step(&mut self, world: ~World, dt: f32) -> (){\n		\n	}\n}\n\n",
-			"file": "src/WorldState/mod.rs",
-			"file_size": 1343,
-			"file_write_time": 130379109400852897,
+			"file": "src/Init/mod.rs",
 			"settings":
 			{
-				"buffer_size": 1345,
+				"buffer_size": 1611,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": ".gitignore",
+			"settings":
+			{
+				"buffer_size": 18,
 				"line_ending": "Unix"
 			}
 		},
@@ -26,7 +43,31 @@
 			"file": "src/main.rs",
 			"settings":
 			{
-				"buffer_size": 1453,
+				"buffer_size": 1421,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/Components/mod.rs",
+			"settings":
+			{
+				"buffer_size": 727,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/World/mod.rs",
+			"settings":
+			{
+				"buffer_size": 299,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/Behaviours/mod.rs",
+			"settings":
+			{
+				"buffer_size": 0,
 				"line_ending": "Unix"
 			}
 		}
@@ -34,16 +75,40 @@
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 156.0,
+		"height": 84.0,
 		"selected_items":
 		[
 			[
-				"pyt",
-				"Set Syntax: Python"
+				"gist co",
+				"Gist: Copy Gist URL"
 			],
 			[
 				"gist",
+				"Gist: Update File"
+			],
+			[
+				"ctag",
+				"CTags: Rebuild Tags"
+			],
+			[
+				"copy",
+				"Gist: Copy Gist URL"
+			],
+			[
+				"open ",
 				"Gist: Open Gist in Browser"
+			],
+			[
+				"crea",
+				"Gist: Create Private Gist"
+			],
+			[
+				"gist ope",
+				"Gist: Open Gist in Browser"
+			],
+			[
+				"pyt",
+				"Set Syntax: Python"
 			],
 			[
 				"ins",
@@ -140,9 +205,14 @@
 	"file_history":
 	[
 		"/home/bollu/prog/rust/equinox/bin/makefile",
-		"/home/bollu/.config/sublime-text-3/Packages/User/Gist.sublime-settings",
+		"/home/bollu/prog/rust/equinox/makefile",
+		"/home/bollu/prog/rust/equinox/bin/settings",
 		"/home/bollu/prog/rust/equinox/src/main.rs",
+		"/home/bollu/prog/rust/equinox/src/World/mod.rs",
+		"/home/bollu/prog/rust/equinox/src/Components/mod.rs",
+		"/home/bollu/prog/rust/equinox/src/Components/position.rs",
 		"/home/bollu/prog/rust/equinox/src/WorldState/mod.rs",
+		"/home/bollu/.config/sublime-text-3/Packages/User/Gist.sublime-settings",
 		"/home/bollu/prog/build/dogecoin/README.md",
 		"/home/bollu/prog/build/dogecoin/INSTALL",
 		"/home/bollu/.zshrc",
@@ -158,7 +228,6 @@
 		"/home/bollu/.config/sublime-text-3/Packages/Gist/Gist.sublime-settings",
 		"/home/bollu/prog/rust/equinox/src/layer/WorldState.rs",
 		"/home/bollu/prog/rust/equinox/src/mod/WorldState.rs",
-		"/home/bollu/prog/rust/equinox/makefile",
 		"/home/bollu/prog/rust/equinox/.gitignore",
 		"/home/bollu/prog/rust/equinox/src/Tupfile",
 		"/home/bollu/prog/cpp/spy/src/app/Globals.h",
@@ -237,6 +306,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"mod",
+			"UID",
 			"python",
 			"p",
 			"py",
@@ -276,55 +347,88 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "src/WorldState/mod.rs",
+					"file": "src/Init/mod.rs",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1345,
+						"buffer_size": 1611,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1338,
-								1338
+								596,
+								596
 							]
 						],
 						"settings":
 						{
-							"bs_sintax": "rust",
-							"buffer_scroll_name": "1d37c71a",
-							"syntax": "Packages/Rust/Rust.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"bs_sintax": "plain text",
+							"buffer_scroll_name": "85a27ff2",
+							"gist_description": "../src/Init/mod.rs:35:43: 35:44 error: obsolete syntax: declaration of multiple locals at once\n../src/Init/mod.rs:35 	    	let keyValues = HashMap<key, Setting>::new();",
+							"gist_filename": "mod.rs",
+							"gist_html_url": "https://gist.github.com/66bfa31ab89bfac0cda0",
+							"gist_url": "https://api.github.com/gists/66bfa31ab89bfac0cda0",
+							"syntax": "Packages/Rust/Rust.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 720.0,
+						"translation.y": 360.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": ".gitignore",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 18,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								7,
+								7
+							]
+						],
+						"settings":
+						{
+							"bs_sintax": "plain text",
+							"buffer_scroll_name": "fc9d1f16",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 1,
+					"buffer": 2,
 					"file": "src/main.rs",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1453,
+						"buffer_size": 1421,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								216,
-								216
+								376,
+								376
 							]
 						],
 						"settings":
@@ -336,10 +440,104 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 240.0,
+						"translation.y": 180.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "src/Components/mod.rs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 727,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								709,
+								709
+							]
+						],
+						"settings":
+						{
+							"bs_sintax": "rust",
+							"buffer_scroll_name": "8f1b82ac",
+							"gist_description": "../src/Components/mod.rs:29:8: 29:23 error: wrong number of lifetime parameters: expected 1 but found 0\n../src/Components/mod.rs:29 	Shape(graphics::Shape),",
+							"gist_filename": "mod.rs",
+							"gist_html_url": "https://gist.github.com/8e7fb5a780bedca6b6a5",
+							"gist_url": "https://api.github.com/gists/8e7fb5a780bedca6b6a5",
+							"syntax": "Packages/Rust/Rust.tmLanguage"
+						},
+						"translation.x": -0.0,
+						"translation.y": 480.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "src/World/mod.rs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 299,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								97,
+								97
+							]
+						],
+						"settings":
+						{
+							"bs_sintax": "rust",
+							"buffer_scroll_name": "80928ace",
+							"syntax": "Packages/Rust/Rust.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "src/Behaviours/mod.rs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"bs_sintax": "plain text",
+							"buffer_scroll_name": "ea08a974",
+							"syntax": "Packages/Rust/Rust.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
 					"type": "text"
 				}
 			]
@@ -376,6 +574,10 @@
 		]
 	},
 	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 128.0
+	},
 	"output.find_results":
 	{
 		"height": 0.0
@@ -391,6 +593,14 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"main",
+				"main.rs"
+			],
+			[
+				"init",
+				"Init/mod.rs"
+			],
 			[
 				"gl",
 				"app/Globals.h"

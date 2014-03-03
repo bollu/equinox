@@ -5,6 +5,8 @@ use std::logging;
 
 pub type key = ~str;
 
+
+#[deriving(Show)]
 pub enum Setting {
 	Int(int),
 	Float(f32),
@@ -20,22 +22,22 @@ pub struct Settings {
 }
 
 impl Settings {
-	fn ParsePair(name: ~str, valueStr: ~str) -> (key, Setting) {
+	fn genSetting(name: &str, valueStr: &str) -> Setting {
 
 		match name.char_at(0) {
 
 			'i' => {
 				let value = from_str::<int>(valueStr).unwrap();
-				return (name, Int(value));
+				return Int(value);
 			},
 
 			'f' => {
 				let value = from_str::<f32>(valueStr).unwrap();
-				return (name, Float(value));
+				return Float(value);
 			},
 
 			's' => {
-				return (name, String(valueStr));
+				return String(valueStr.to_owned());
 			},
 
 			'v' => {
@@ -43,32 +45,46 @@ impl Settings {
 
 				let float1 = from_str::<f32>(floatPair[0]).unwrap();
 				let float2 = from_str::<f32>(floatPair[1]).unwrap();
-				return (name, Vector(float1, float2));
+				return Vector(float1, float2);
 			},
-
-
 
 			'b' => {
 				let value = (valueStr == ~"true");
-				return (name, Bool(value));
+				return Bool(value);
 			},
 
 			_ => {
-				return (name, Error);
+				return Error;
 			}
 		}	
 	}
 
 	fn Parse(data: ~str) -> HashMap<key, Setting> {
 
-		let dataPairs : ~[&str] = data.split('\n').collect();
+		let mut keyValues = HashMap::new();
 
-		for &pair in dataPairs.iter() {
-			::debug!("pair: {}", pair);
+		let dataLines : ~[&str] = data.split('\n').collect();
+
+		for &line in dataLines.iter() {
+			let dataPair : ~[&str] = line.split(':').collect();
+			
+			if(dataPair.len() != 2) {
+				::warn!("faulty data pair: {}", dataPair);
+				continue;
+			}
+
+			let name = dataPair[0].trim();
+			let valueStr = dataPair[1].trim();
+
+			let setting = Settings::genSetting(name, valueStr);
+
+			::debug!("name: {}, Setting: {}", name, setting);
+
+			keyValues.insert(name.to_owned(), setting);
 		}
 
-		let keyValues = HashMap::new();
-		keyValues
+		::debug!("keyValues: {}", keyValues);
+		return keyValues
 	}
 	
 	pub fn new(settingsPath: ~str) -> Settings{
@@ -78,12 +94,12 @@ impl Settings {
 			let contents = File::open(&path).read_to_str().unwrap();
 			let keyValues = Settings::Parse(contents);
 
-			Settings { keyValues: keyValues }
+			return Settings { keyValues: keyValues }
 	    }
 	    else {
 	    	let keyValues = HashMap::new();
 
-	    	Settings { keyValues: keyValues }
+	    	return Settings { keyValues: keyValues }
 	    }
 
 

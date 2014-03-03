@@ -1,2 +1,5 @@
-fullscreen: false
-res: (1080, 720)
+bFullscreen : false
+vResolution : 1280 720
+iNumber : 20
+sName: "asjj"
+fFloat : 20.1293
