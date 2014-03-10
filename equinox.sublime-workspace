@@ -4,6 +4,62 @@
 		"selected_items":
 		[
 			[
+				"re",
+				"resources"
+			],
+			[
+				"Re",
+				"ResourceLoader"
+			],
+			[
+				"len",
+				"len_squared"
+			],
+			[
+				"Stat",
+				"StateId"
+			],
+			[
+				"sta",
+				"states"
+			],
+			[
+				"rad",
+				"radToDirStr"
+			],
+			[
+				"Sat",
+				"StateId"
+			],
+			[
+				"State",
+				"StateHandler"
+			],
+			[
+				"Red",
+				"RenderPump"
+			],
+			[
+				"E",
+				"EventPump"
+			],
+			[
+				"ha",
+				"handler"
+			],
+			[
+				"han",
+				"handlers"
+			],
+			[
+				"Event",
+				"EventHandler"
+			],
+			[
+				"clear",
+				"clearColor"
+			],
+			[
 				"float",
 				"floatPair"
 			],
@@ -24,18 +80,34 @@
 	"buffers":
 	[
 		{
-			"file": "src/Init/mod.rs",
+			"file": "src/game/MainMenu.rs",
 			"settings":
 			{
-				"buffer_size": 1611,
+				"buffer_size": 117,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": ".gitignore",
+			"file": "src/resource_loader.rs",
 			"settings":
 			{
-				"buffer_size": 18,
+				"buffer_size": 622,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/settings.rs",
+			"settings":
+			{
+				"buffer_size": 1942,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/state.rs",
+			"settings":
+			{
+				"buffer_size": 1404,
 				"line_ending": "Unix"
 			}
 		},
@@ -43,31 +115,31 @@
 			"file": "src/main.rs",
 			"settings":
 			{
-				"buffer_size": 1421,
+				"buffer_size": 2596,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "src/Components/mod.rs",
+			"file": "src/rendering.rs",
 			"settings":
 			{
-				"buffer_size": 727,
+				"buffer_size": 2044,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "src/World/mod.rs",
+			"file": "/home/bollu/prog/rust/bug/main.rs",
 			"settings":
 			{
-				"buffer_size": 299,
+				"buffer_size": 527,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "src/Behaviours/mod.rs",
+			"file": "src/math.rs",
 			"settings":
 			{
-				"buffer_size": 0,
+				"buffer_size": 7344,
 				"line_ending": "Unix"
 			}
 		}
@@ -75,32 +147,88 @@
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 84.0,
+		"height": 375.0,
 		"selected_items":
 		[
 			[
-				"gist co",
+				"cop",
 				"Gist: Copy Gist URL"
 			],
 			[
 				"gist",
+				"Gist: Create Private Gist"
+			],
+			[
+				"git ",
+				"Gist: Add File to Gist"
+			],
+			[
+				"gist crea",
+				"Gist: Create Private Gist"
+			],
+			[
+				"gist ",
+				"Gist: Add File to Gist"
+			],
+			[
+				"upda",
 				"Gist: Update File"
 			],
 			[
-				"ctag",
-				"CTags: Rebuild Tags"
+				"rein",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"gis crea",
+				"Gist: Create Private Gist"
+			],
+			[
+				"crea",
+				"Gist: Create Private Gist"
+			],
+			[
+				"u",
+				"Gist: Update File"
+			],
+			[
+				"des",
+				"Gist: Change Gist Description"
+			],
+			[
+				"Rein",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"up",
+				"Gist: Update File"
+			],
+			[
+				"gistup",
+				"Gist: Update File"
 			],
 			[
 				"copy",
 				"Gist: Copy Gist URL"
 			],
 			[
-				"open ",
-				"Gist: Open Gist in Browser"
+				"update",
+				"Gist: Update File"
 			],
 			[
-				"crea",
-				"Gist: Create Private Gist"
+				"rust",
+				"Set Syntax: Rust"
+			],
+			[
+				"gist co",
+				"Gist: Copy Gist URL"
+			],
+			[
+				"ctag",
+				"CTags: Rebuild Tags"
+			],
+			[
+				"open ",
+				"Gist: Open Gist in Browser"
 			],
 			[
 				"gist ope",
@@ -121,10 +249,6 @@
 			[
 				"insta",
 				"Package Control: Install Package"
-			],
-			[
-				"rein",
-				"Indentation: Reindent Lines"
 			],
 			[
 				"remp",
@@ -204,12 +328,31 @@
 	},
 	"file_history":
 	[
-		"/home/bollu/prog/rust/equinox/bin/makefile",
-		"/home/bollu/prog/rust/equinox/makefile",
-		"/home/bollu/prog/rust/equinox/bin/settings",
-		"/home/bollu/prog/rust/equinox/src/main.rs",
-		"/home/bollu/prog/rust/equinox/src/World/mod.rs",
+		"/home/bollu/prog/rust/bug/makefile",
 		"/home/bollu/prog/rust/equinox/src/Components/mod.rs",
+		"/home/bollu/prog/rust/equinox/src/Behaviours/mod.rs",
+		"/home/bollu/prog/rust/equinox/src/Math.rs",
+		"/home/bollu/prog/rust/equinox/src/main.rs",
+		"/home/bollu/prog/rust/equinox/src/State.rs",
+		"/home/bollu/prog/rust/equinox/bin/Tupfile",
+		"/home/bollu/prog/rust/equinox/bin/makefile",
+		"/home/bollu/prog/rust/equinox/src/EventPump.rs",
+		"/home/bollu/prog/rust/equinox/src/Rendering.rs",
+		"/home/bollu/prog/rust/equinox/src/Settings.rs",
+		"/home/bollu/prog/build/rust-sfml/src/rsfml/window/window_style.rs",
+		"/home/bollu/prog/rust/equinox/src/World.rs",
+		"/home/bollu/prog/build/rust-sfml/src/rsfml/traits/drawable.rs",
+		"/home/bollu/prog/rust/equinox/src/Observer.rs",
+		"/home/bollu/prog/build/rust-sfml/src/rsfml/window/mod.rs",
+		"/home/bollu/prog/build/rust-sfml/src/rsfml/window/window.rs",
+		"/home/bollu/prog/build/rust-sfml/src/rsfml/graphics/render_states/rc.rs",
+		"/home/bollu/prog/build/rust-sfml/src/rsfml/graphics/render_states/mod.rs",
+		"/home/bollu/prog/rust/equinox/src/Init/mod.rs",
+		"/home/bollu/prog/rust/equinox/bin/settings",
+		"/home/bollu/prog/rust/equinox/src/Window.rs",
+		"/home/bollu/prog/rust/equinox/src/World/mod.rs",
+		"/home/bollu/prog/rust/equinox/.gitignore",
+		"/home/bollu/prog/rust/equinox/makefile",
 		"/home/bollu/prog/rust/equinox/src/Components/position.rs",
 		"/home/bollu/prog/rust/equinox/src/WorldState/mod.rs",
 		"/home/bollu/.config/sublime-text-3/Packages/User/Gist.sublime-settings",
@@ -228,11 +371,9 @@
 		"/home/bollu/.config/sublime-text-3/Packages/Gist/Gist.sublime-settings",
 		"/home/bollu/prog/rust/equinox/src/layer/WorldState.rs",
 		"/home/bollu/prog/rust/equinox/src/mod/WorldState.rs",
-		"/home/bollu/prog/rust/equinox/.gitignore",
 		"/home/bollu/prog/rust/equinox/src/Tupfile",
 		"/home/bollu/prog/cpp/spy/src/app/Globals.h",
 		"/home/bollu/prog/cpp/spy/src/app/Scroll.cc",
-		"/home/bollu/prog/rust/equinox/bin/Tupfile",
 		"/home/bollu/.config/sublime-text-3/Packages/Zen Tabs/Default.sublime-keymap",
 		"/home/bollu/.config/sublime-text-3/Packages/User/ZenTabs.sublime-settings",
 		"/home/bollu/.config/sublime-text-3/Packages/Zen Tabs/ZenTabs.sublime-settings",
@@ -296,9 +437,12 @@
 	},
 	"find_in_files":
 	{
-		"height": 0.0,
+		"height": 106.0,
 		"where_history":
 		[
+			"*.rs",
+			"Angle",
+			"*.rs"
 		]
 	},
 	"find_state":
@@ -306,6 +450,19 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"polar",
+			"Polar",
+			"Angle",
+			"cartesian",
+			"'",
+			"get_mut",
+			"current",
+			"floor",
+			"hashmap",
+			"f32",
+			"print!",
+			"WindowStyle",
+			"windowStyle",
 			"mod",
 			"UID",
 			"python",
@@ -336,6 +493,8 @@
 		"regex": false,
 		"replace_history":
 		[
+			"Angle",
+			"Polar",
 			"l_mousePos"
 		],
 		"reverse": false,
@@ -347,160 +506,30 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 5,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "src/Init/mod.rs",
+					"file": "src/game/MainMenu.rs",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1611,
+						"buffer_size": 117,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								596,
-								596
+								117,
+								117
 							]
 						],
 						"settings":
 						{
 							"bs_sintax": "plain text",
-							"buffer_scroll_name": "85a27ff2",
-							"gist_description": "../src/Init/mod.rs:35:43: 35:44 error: obsolete syntax: declaration of multiple locals at once\n../src/Init/mod.rs:35 	    	let keyValues = HashMap<key, Setting>::new();",
-							"gist_filename": "mod.rs",
-							"gist_html_url": "https://gist.github.com/66bfa31ab89bfac0cda0",
-							"gist_url": "https://api.github.com/gists/66bfa31ab89bfac0cda0",
-							"syntax": "Packages/Rust/Rust.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 360.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": ".gitignore",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 18,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								7,
-								7
-							]
-						],
-						"settings":
-						{
-							"bs_sintax": "plain text",
-							"buffer_scroll_name": "fc9d1f16",
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "src/main.rs",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1421,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								376,
-								376
-							]
-						],
-						"settings":
-						{
-							"bs_sintax": "rust",
-							"buffer_scroll_name": "1c53907c",
-							"syntax": "Packages/Rust/Rust.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 180.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "src/Components/mod.rs",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 727,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								709,
-								709
-							]
-						],
-						"settings":
-						{
-							"bs_sintax": "rust",
-							"buffer_scroll_name": "8f1b82ac",
-							"gist_description": "../src/Components/mod.rs:29:8: 29:23 error: wrong number of lifetime parameters: expected 1 but found 0\n../src/Components/mod.rs:29 	Shape(graphics::Shape),",
-							"gist_filename": "mod.rs",
-							"gist_html_url": "https://gist.github.com/8e7fb5a780bedca6b6a5",
-							"gist_url": "https://api.github.com/gists/8e7fb5a780bedca6b6a5",
-							"syntax": "Packages/Rust/Rust.tmLanguage"
-						},
-						"translation.x": -0.0,
-						"translation.y": 480.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "src/World/mod.rs",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 299,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								97,
-								97
-							]
-						],
-						"settings":
-						{
-							"bs_sintax": "rust",
-							"buffer_scroll_name": "80928ace",
+							"buffer_scroll_name": "18416196",
 							"syntax": "Packages/Rust/Rust.tmLanguage"
 						},
 						"translation.x": 0.0,
@@ -511,12 +540,209 @@
 					"type": "text"
 				},
 				{
-					"buffer": 5,
-					"file": "src/Behaviours/mod.rs",
+					"buffer": 1,
+					"file": "src/resource_loader.rs",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 0,
+						"buffer_size": 622,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								405,
+								405
+							]
+						],
+						"settings":
+						{
+							"bs_sintax": "plain text",
+							"buffer_scroll_name": "88b92f1d",
+							"syntax": "Packages/Rust/Rust.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 60.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "src/settings.rs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1942,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								403,
+								403
+							]
+						],
+						"settings":
+						{
+							"bs_sintax": "rust",
+							"buffer_scroll_name": "642aafe4",
+							"syntax": "Packages/Rust/Rust.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": -0.0,
+						"translation.y": 240.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "src/state.rs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1404,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								91,
+								91
+							]
+						],
+						"settings":
+						{
+							"bs_sintax": "rust",
+							"buffer_scroll_name": "6b5f39ac",
+							"syntax": "Packages/Rust/Rust.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "src/main.rs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2596,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1478,
+								1478
+							]
+						],
+						"settings":
+						{
+							"bs_sintax": "rust",
+							"buffer_scroll_name": "1c53907c",
+							"gist_description": "",
+							"gist_filename": "main.rs",
+							"gist_html_url": "https://gist.github.com/54d3d3fc7c7cf981611c",
+							"gist_url": "https://api.github.com/gists/54d3d3fc7c7cf981611c",
+							"syntax": "Packages/Rust/Rust.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 780.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "src/rendering.rs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2044,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1541,
+								1541
+							]
+						],
+						"settings":
+						{
+							"bs_sintax": "rust",
+							"buffer_scroll_name": "582fe247",
+							"gist_description": "segfault (",
+							"gist_filename": "rendering.rs",
+							"gist_html_url": "https://gist.github.com/a61726c8d3ed0a5b128c",
+							"gist_url": "https://api.github.com/gists/a61726c8d3ed0a5b128c",
+							"syntax": "Packages/Rust/Rust.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1194.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "/home/bollu/prog/rust/bug/main.rs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 527,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								527,
+								527
+							]
+						],
+						"settings":
+						{
+							"bs_sintax": "rust",
+							"buffer_scroll_name": "465935d2",
+							"gist_description": "compiler bug - it compiles ;)",
+							"gist_filename": "bug.rs",
+							"gist_html_url": "https://gist.github.com/8ab125a87ea26376d0d2",
+							"gist_url": "https://api.github.com/gists/8ab125a87ea26376d0d2",
+							"syntax": "Packages/Rust/Rust.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 480.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "src/math.rs",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 7344,
 						"regions":
 						{
 						},
@@ -529,15 +755,16 @@
 						],
 						"settings":
 						{
-							"bs_sintax": "plain text",
-							"buffer_scroll_name": "ea08a974",
-							"syntax": "Packages/Rust/Rust.tmLanguage"
+							"bs_sintax": "rust",
+							"buffer_scroll_name": "4d640d5b",
+							"syntax": "Packages/Rust/Rust.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 6,
 					"type": "text"
 				}
 			]
@@ -594,8 +821,44 @@
 		"selected_items":
 		[
 			[
+				"mod",
+				"Components/mod.rs"
+			],
+			[
+				"ren",
+				"Rendering.rs"
+			],
+			[
 				"main",
 				"main.rs"
+			],
+			[
+				"ma",
+				"Math.rs"
+			],
+			[
+				"sta",
+				"State.rs"
+			],
+			[
+				"math",
+				"Math.rs"
+			],
+			[
+				"wind",
+				"Window.rs"
+			],
+			[
+				"mai",
+				"main.rs"
+			],
+			[
+				"wor",
+				"World.rs"
+			],
+			[
+				"se",
+				"Settings.rs"
 			],
 			[
 				"init",

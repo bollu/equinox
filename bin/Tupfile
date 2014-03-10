@@ -1,1 +1,1 @@
-: ../src/main.rs |> rustc ../src/main.rs -L ../lib/ -o equinox |> equinox
+: ../src/main.rs |> rustc  ../src/main.rs -L ../lib/ -o equinox |> equinox
