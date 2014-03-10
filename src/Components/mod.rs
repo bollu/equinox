@@ -1,5 +1,3 @@
-use rsfml::graphics::rc;
-
 pub type UID = int;
 
 pub struct Position {
@@ -27,13 +25,10 @@ impl Health {
 }
 
 //-----------------------
-enum RendererType {
-	Shape(rc::Shape),
-	Text(rc::Text),
-} 
+/*use Window::Renderer
 
 pub struct Renderer {
-	target: RendererType,
+	target: Renderer,
 	z: int,
 	visible: bool,
 }
@@ -43,5 +38,5 @@ impl Renderer {
 		Renderer {target: target, z: z, visible: visible}
 	}
 }
-
+*/
 //-----------------------
