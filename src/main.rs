@@ -2,32 +2,37 @@ extern crate num;
 extern crate native;
 extern crate rsfml;
 
-
 use rsfml::window::{event};
 use rsfml::graphics::{CircleShape, RectangleShape, Color, Font};
 use rsfml::system::vector2::Vector2f;
-use resource_loader::{ResourceLoader, Resource};
 
-mod world;
-mod Components;
-mod settings;
-mod rendering;
-mod event_pump;
-mod state;
-mod math;
-mod resource_loader;
-mod game;
+use engine::world;
+use engine::settings;
+use engine::rendering;
+use engine::event_pump;
+use engine::state;
+use engine::math;
+use engine::resource_loader::{ResourceLoader, Resource};
+
+
+pub mod engine;
+pub mod game;
+
 
 fn main () -> () {
-    let settings = settings::Settings::new(~"settings");
-    let mut window =  rendering::Window::new(800, 600, ~"equinox", false);
-    let mut eventPump = event_pump::EventPump::new();
-    let mut renderPump = rendering::RenderPump::new();
-    let mut resourceLoader = resource_loader::ResourceLoader::new();
+    let settings = engine::settings::Settings::new(~"settings");
+    let mut window =  engine::rendering::Window::new(800, 600, ~"equinox", false);
+    let mut event_pump = engine::event_pump::EventPump::new();
+    let mut render_pump = engine::rendering::RenderPump::new();
+    let mut resource_loader = engine::resource_loader::ResourceLoader::new();
+    let mut state_machine : ~engine::state::StateMachine;
 
     //load all resources required by the game
-    load_resources(&mut resourceLoader);
+    game::load_resources(&mut resource_loader);
 
+    //create all states
+    game::init_states(state_machine);
+    
     let mut colors : ~[Color] = ~[];
     colors.push(game::colors::black);
     colors.push(game::colors::gray);
@@ -50,7 +55,7 @@ fn main () -> () {
         //not sure if the math checks out. too lazy to check it.
         rect.set_position2f(i as  f32 * width, 0.);
         rect.set_fill_color(color);
-        renderPump.attach(rect);
+        render_pump.attach(rect);
        
         i += 1;
         
@@ -63,19 +68,14 @@ fn main () -> () {
             match event {
                 event::Closed => window.close(),
                 event::NoEvent => break,
-                _ => { eventPump.pump(&event) }
+                _ => { event_pump.pump(&event) }
             }
         }
 
         window.clear();
-        renderPump.pump(&mut window);
+        render_pump.pump(&mut window);
         window.display();
     }
 
    
-}
-
-fn load_resources(loader: &mut ResourceLoader) {
-    let obelix_font = Font::new_from_file("res/font/Obelix.ttf").unwrap();
-    loader.addResource(~"MenuFont", resource_loader::Font(obelix_font));
 }

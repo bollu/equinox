@@ -1,6 +1,6 @@
 use std::hashmap::HashMap;
-use rendering::{Window, RenderPump};
-use event_pump::EventPump;
+use engine::rendering::{Window, RenderPump};
+use engine::event_pump::EventPump;
 
 type StateId = int;
 
@@ -16,15 +16,15 @@ pub trait State {
 }
 
 
-pub struct StateHandler {
+pub struct StateMachine {
 	states: HashMap<StateId, ~State>,
-	currentId: StateId,
+	current_id: StateId,
 	transition: StateTransition
 }
 
-impl StateHandler {
-	pub fn new (id: StateId, beginState: ~State ) -> StateHandler {
-		let mut state = StateHandler { states: HashMap::new(), currentId: id, transition: Nil };
+impl StateMachine {
+	pub fn new (id: StateId, beginState: ~State ) -> StateMachine {
+		let mut state = StateMachine { states: HashMap::new(), current_id: id, transition: Nil };
 		state.add_state(id, beginState);
 		
 		state
@@ -55,6 +55,6 @@ impl StateHandler {
 	}
 
 	fn get_current_state<'a>(&'a mut self) -> &'a mut ~State {
-		return self.states.get_mut(&self.currentId)	
+		return self.states.get_mut(&self.current_id)	
 	}
 }

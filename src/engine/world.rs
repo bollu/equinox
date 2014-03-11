@@ -1,4 +1,4 @@
-use Components::{Position, UID};
+/*use Components::{Position, UID};
 
 use std::hashmap::HashMap;
 
@@ -12,6 +12,6 @@ impl ComponentBag {
 		self.positions.pop(&tag);
 		//self.renderers.pop(&tag);
 	}
-}
+}*/
 
 
