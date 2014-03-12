@@ -10,3 +10,4 @@ pub static green : Color = Color { red: 86, green: 205, blue: 38, alpha: 255 };
 pub static dark_green : Color = Color { red: 54, green: 171, blue: 138, alpha: 255 };
 pub static yellow : Color = Color { red: 222, green: 239, blue: 187, alpha: 255 };
 pub static white : Color = Color { red: 250, green: 250, blue: 250, alpha: 255 };
+pub static invisible : Color = Color { red: 0, green: 0, blue: 0, alpha: 0 };
