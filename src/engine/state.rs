@@ -6,7 +6,7 @@ type StateId = int;
 
 pub enum StateTransition {
 	Transition(StateId), //UID of state
-	Nil
+	NoTransition
 }
 
 pub trait State {
@@ -17,23 +17,31 @@ pub trait State {
 
 
 pub struct StateMachine {
-	states: HashMap<StateId, ~State>,
+	states: HashMap<StateId, ~State:>,
 	current_id: StateId,
 	transition: StateTransition
 }
 
 impl StateMachine {
-	pub fn new (id: StateId, beginState: ~State ) -> StateMachine {
-		let mut state = StateMachine { states: HashMap::new(), current_id: id, transition: Nil };
-		state.add_state(id, beginState);
-		
-		state
+	pub fn uninitialized() -> StateMachine {
+		StateMachine { states: HashMap::new(), current_id: 0, transition: NoTransition  }
+	}
+	
+	pub fn set_default_state(&mut self, id: StateId) {
+		self.current_id = id;
 	}
 
-	pub fn add_state(&mut self, id: StateId, state: ~State) {
+	pub fn add_state(&mut self, id: StateId, state: ~State:) {
 		self.states.insert(id, state);
 	}
 
+	pub fn initialize(&mut self, event_pump: &mut EventPump, render_pump: &mut RenderPump) {
+		let state = self.get_current_state();
+		state.attach_event_handlers(event_pump);
+		state.update_renderers(render_pump);
+
+	}
+	
 	pub fn attach_event_handlers(&mut self, pump: &mut EventPump) {
 		let state = self.get_current_state();
 		state.attach_event_handlers(pump)
@@ -54,7 +62,7 @@ impl StateMachine {
 		}
 	}
 
-	fn get_current_state<'a>(&'a mut self) -> &'a mut ~State {
+	fn get_current_state<'a>(&'a mut self) -> &'a mut ~State: {
 		return self.states.get_mut(&self.current_id)	
 	}
 }
