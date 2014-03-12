@@ -1,7 +1,7 @@
 Equniox
 =======
 
-A project to experiment with Rust, Carmack's ideas and, well, build a game.
+A project to experiment with [Rust](http://static.rust-lang.org/doc/master/tutorial.html), [Carmack's ideas](http://www.youtube.com/watch?v=1PhArSujR_A) and, well, build a game.
 
 Architecture (hah!)
 ====================
