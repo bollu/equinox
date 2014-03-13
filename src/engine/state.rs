@@ -1,30 +1,42 @@
 use std::hashmap::HashMap;
-use engine::rendering::{Window, RenderPump};
-use engine::event_pump::EventPump;
+use engine::rendering::RenderQueue;
+use engine::event_queue::EventQueue;
 
 type StateId = int;
 
-pub enum StateTransition {
-	Transition(StateId), //UID of state
-	NoTransition
+#[deriving(Eq)]
+pub enum EngineState {
+	StateTransition(StateId), //UID of state
+	EngineShutdown, //shut down and close
+	NoChange
 }
 
 pub trait State {
-	fn attach_event_handlers(&mut self, pump: &mut EventPump);
-	fn update_renderers(&mut self, pump: &mut RenderPump);
-	fn Tick(&mut self, dt: f32) -> StateTransition;
+	//TODO: make these opposites...
+	fn queue_event_handlers(&mut self, queue: &mut EventQueue);
+	fn queue_renderers(&mut self, queue: &mut RenderQueue);
+
+	fn Tick(&mut self, dt: f32) -> EngineState;
 }
 
+struct TransitionInfo {
+	transitioning: bool,
+	next_state_id: StateId,
+}
 
 pub struct StateMachine {
 	states: HashMap<StateId, ~State:>,
 	current_id: StateId,
-	transition: StateTransition
+	engine_state: EngineState
+}
+
+impl TransitionInfo {
+
 }
 
 impl StateMachine {
 	pub fn uninitialized() -> StateMachine {
-		StateMachine { states: HashMap::new(), current_id: 0, transition: NoTransition  }
+		StateMachine { states: HashMap::new(), current_id: 0, engine_state: NoChange  }
 	}
 	
 	pub fn set_default_state(&mut self, id: StateId) {
@@ -35,31 +47,32 @@ impl StateMachine {
 		self.states.insert(id, state);
 	}
 
-	pub fn initialize(&mut self, event_pump: &mut EventPump, render_pump: &mut RenderPump) {
+	pub fn initialize(&mut self, event_queue: &mut EventQueue, render_queue: &mut RenderQueue) {
 		let state = self.get_current_state();
-		state.attach_event_handlers(event_pump);
-		state.update_renderers(render_pump);
+		state.queue_event_handlers(event_queue);
+		state.queue_renderers(render_queue);
 
 	}
-	
-	pub fn attach_event_handlers(&mut self, pump: &mut EventPump) {
-		let state = self.get_current_state();
-		state.attach_event_handlers(pump)
-	}
 
-	pub fn update_renderers(&mut self, pump: &mut RenderPump) {
-		let state = self.get_current_state();
-		state.update_renderers(pump)
-	}
 
-	pub fn Tick(&mut self, dt: f32) {
-		let transition = self.get_current_state().Tick(dt);
-		self.transition = transition;
+	pub fn Tick(&mut self, dt: f32, event_queue: &mut EventQueue, render_queue: &mut RenderQueue) -> EngineState {
+		self.engine_state = {
+			let current_state = self.get_current_state();
+
+			current_state.queue_event_handlers(event_queue);
+			current_state.queue_renderers(render_queue);
+
+			current_state.Tick(dt)
+		};
+		 
 		
-		match  self.transition {
-			Transition(id) => return, 
-			_ => return
+		//TODO - transition!
+		match self.engine_state {
+			StateTransition(id) => {},
+			_ => {} 
 		}
+
+		return self.engine_state
 	}
 
 	fn get_current_state<'a>(&'a mut self) -> &'a mut ~State: {

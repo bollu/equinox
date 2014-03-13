@@ -1,7 +1,5 @@
 use std::hashmap::HashMap;
-use std::io::stdin;
 use std::io::fs::File;
-use std::logging;
 
 pub type key = ~str;
 
@@ -68,7 +66,7 @@ impl Settings {
 		for &line in dataLines.iter() {
 			let dataPair : ~[&str] = line.split(':').collect();
 			
-			if(dataPair.len() != 2) {
+			if dataPair.len() != 2 {
 				::warn!("faulty data pair: {}", dataPair);
 				continue;
 			}

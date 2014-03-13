@@ -4,6 +4,9 @@ use engine::math::vector2;
 use rsfml::graphics::{RenderWindow, Color};
 use rsfml::window::{event, ContextSettings, VideoMode, event, Close, Fullscreen, WindowStyle};
 
+use collections::ringbuf::RingBuf;
+use collections::deque::Deque;
+
 pub struct RenderContext {
 	viewport_dim: vector2,
 }
@@ -63,25 +66,26 @@ impl Window {
 
 
 
-pub struct RenderPump<'a> {
-	renderers: ~[&'a rsfml::traits::Drawable:],
+pub struct RenderQueue<'a> {
+	renderers: RingBuf<&'a rsfml::traits::Drawable:>,
 	clear_color: Color,
 }
 
-impl<'a> RenderPump<'a> {
-	pub fn new() -> RenderPump {
-		RenderPump { renderers: ~[], clear_color: Color::new_RGB(0, 0, 20) }
+impl<'a> RenderQueue<'a> {
+	pub fn new() -> RenderQueue {
+		RenderQueue { renderers: RingBuf::new(), clear_color: Color::new_RGB(0, 0, 20) }
 	}
 
 	pub fn attach(&mut self, renderer: &'a rsfml::traits::Drawable: ) {
-		self.renderers.push(renderer);
+		self.renderers.push_back(renderer);
 	}
+
 
 	pub fn set_clear_color(&mut self, clear_color: Color) {
 		self.clear_color = clear_color;
 	}
 
-	pub fn pump(&self, window: &mut Window) {
+	pub fn render(&mut self, window: &mut Window) {
 		window.clear(self.clear_color);
 
 		let render_window = window.get_render_window();
@@ -89,6 +93,8 @@ impl<'a> RenderPump<'a> {
 		for renderer in self.renderers.iter() {
 			renderer.draw_in_render_window(render_window);
 		}
+
+		self.renderers.clear();
 	}
 
 
