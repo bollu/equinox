@@ -1,5 +1,3 @@
-use engine::interpolation::lerp;
-use std::f32::abs;
 
  #[deriving(Eq)]
 enum State {

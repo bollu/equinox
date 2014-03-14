@@ -2,7 +2,7 @@ extern crate rsfml;
 
 use engine::math::vector2;
 use rsfml::graphics::{RenderWindow, Color};
-use rsfml::window::{event, ContextSettings, VideoMode, event, Close, Fullscreen, WindowStyle};
+use rsfml::window::{ContextSettings, VideoMode, event, Close, Fullscreen, WindowStyle};
 
 use collections::ringbuf::RingBuf;
 use collections::deque::Deque;
@@ -76,7 +76,7 @@ impl<'a> RenderQueue<'a> {
 		RenderQueue { renderers: RingBuf::new(), clear_color: Color::new_RGB(0, 0, 20) }
 	}
 
-	pub fn attach(&mut self, renderer: &'a rsfml::traits::Drawable: ) {
+	pub fn push(&mut self, renderer: &'a rsfml::traits::Drawable: ) {
 		self.renderers.push_back(renderer);
 	}
 

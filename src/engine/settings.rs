@@ -15,12 +15,12 @@ pub enum Setting {
 }
 
 pub struct Settings {
-	keyValues: HashMap<key, Setting>
+	key_value_pair: HashMap<key, Setting>
 
 }
 
 impl Settings {
-	fn genSetting(name: &str, valueStr: &str) -> Setting {
+	fn gen_setting(name: &str, valueStr: &str) -> Setting {
 
 		match name.char_at(0) {
 
@@ -47,7 +47,7 @@ impl Settings {
 			},
 
 			'b' => {
-				let value = (valueStr == ~"true");
+				let value = (valueStr == "true");
 				Bool(value)
 			},
 
@@ -57,9 +57,9 @@ impl Settings {
 		}	
 	}
 
-	fn Parse(data: ~str) -> HashMap<key, Setting> {
+	fn parse(data: ~str) -> HashMap<key, Setting> {
 
-		let mut keyValues = HashMap::new();
+		let mut key_value_pair = HashMap::new();
 
 		let dataLines : ~[&str] = data.split('\n').collect();
 		
@@ -74,15 +74,15 @@ impl Settings {
 			let name = dataPair[0].trim();
 			let valueStr = dataPair[1].trim();
 
-			let setting = Settings::genSetting(name, valueStr);
+			let setting = Settings::gen_setting(name, valueStr);
 
 			::debug!("name: {}, Setting: {}", name, setting);
 
-			keyValues.insert(name.to_owned(), setting);
+			key_value_pair.insert(name.to_owned(), setting);
 		}
 
-		::debug!("keyValues: {}", keyValues);
-		keyValues
+		::debug!("key_value_pair: {}", key_value_pair);
+		key_value_pair
 	}
 	
 	pub fn new(settingsPath: ~str) -> Settings{
@@ -90,14 +90,14 @@ impl Settings {
 
 		if path.exists() {
 			let contents = File::open(&path).read_to_str().unwrap();
-			let keyValues = Settings::Parse(contents);
+			let key_value_pair = Settings::parse(contents);
 
-			Settings { keyValues: keyValues }
+			Settings { key_value_pair: key_value_pair }
 	    }
 	    else {
-	    	let keyValues = HashMap::new();
+	    	let key_value_pair = HashMap::new();
 
-	    	Settings { keyValues: keyValues }
+	    	Settings { key_value_pair: key_value_pair }
 	    }
 	}
 }

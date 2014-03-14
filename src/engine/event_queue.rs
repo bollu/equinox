@@ -1,5 +1,5 @@
 use rsfml::window::event;
-use std::hashmap::HashMap;
+
 use collections::ringbuf::RingBuf;
 use collections::deque::Deque;
 
@@ -15,7 +15,7 @@ impl<'a> EventQueue<'a> {
 	pub fn new() -> EventQueue {
 		EventQueue { handlers: RingBuf::new() }
 	}
-	pub fn attach(&mut self, handler : &'a mut EventHandler) {
+	pub fn push(&mut self, handler : &'a mut EventHandler) {
 		self.handlers.push_back(handler);
 	}
 

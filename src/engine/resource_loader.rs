@@ -20,12 +20,12 @@ impl ResourceLoader {
 		ResourceLoader { resources: HashMap::new() }
 	}
 
-	pub fn addResource(&mut self, key: Key, resource: Resource) {
+	pub fn add_resource(&mut self, key: Key, resource: Resource) {
 		self.resources.insert(key, resource);
 	}
 
-	pub fn getFont<'a>(&'a self, key: Key) -> &'a graphics::Font {
-		let font = self.getResource(&key);
+	pub fn get_font<'a>(&'a self, key: Key) -> &'a graphics::Font {
+		let font = self.get_resource(&key);
 
 		match *font {
 			Font(ref f) => f,
@@ -33,7 +33,7 @@ impl ResourceLoader {
 		}
 	}
 
-	fn getResource<'a>(&'a self, key: &Key) -> &'a Resource {
+	fn get_resource<'a>(&'a self, key: &Key) -> &'a Resource {
 		match self.resources.find(key) {
 			Some(resource) => return resource,
 			None => fail!("unable to find resource {}", *key),

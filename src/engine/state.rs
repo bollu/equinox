@@ -16,7 +16,10 @@ pub trait State {
 	fn queue_event_handlers(&mut self, queue: &mut EventQueue);
 	fn queue_renderers(&mut self, queue: &mut RenderQueue);
 
-	fn Tick(&mut self, dt: f32) -> EngineState;
+	fn startup(&mut self) { }
+	fn shutdown(&mut self) { }
+
+	fn tick(&mut self, dt: f32) -> EngineState;
 }
 
 struct TransitionInfo {
@@ -27,16 +30,19 @@ struct TransitionInfo {
 pub struct StateMachine {
 	states: HashMap<StateId, ~State:>,
 	current_id: StateId,
-	engine_state: EngineState
+	transition_info: TransitionInfo,
+
 }
 
 impl TransitionInfo {
-
+	pub fn new() -> TransitionInfo {
+		TransitionInfo { transitioning: false, next_state_id: 0 }
+	}
 }
 
 impl StateMachine {
 	pub fn uninitialized() -> StateMachine {
-		StateMachine { states: HashMap::new(), current_id: 0, engine_state: NoChange  }
+		StateMachine { states: HashMap::new(), current_id: 0, transition_info: TransitionInfo::new() }
 	}
 	
 	pub fn set_default_state(&mut self, id: StateId) {
@@ -47,32 +53,39 @@ impl StateMachine {
 		self.states.insert(id, state);
 	}
 
-	pub fn initialize(&mut self, event_queue: &mut EventQueue, render_queue: &mut RenderQueue) {
-		let state = self.get_current_state();
-		state.queue_event_handlers(event_queue);
-		state.queue_renderers(render_queue);
+	pub fn tick(&mut self, dt: f32, event_queue: &mut EventQueue, render_queue: &mut RenderQueue) -> EngineState {
+		
+		if self.transition_info.transitioning {
+			//ask current state to shutdown
+			self.get_current_state().shutdown();
 
-	}
+			self.current_id = self.transition_info.next_state_id;
+			self.transition_info.transitioning = false;
+			
+			//now that the current_id has changed, let's launch the next state
+			self.get_current_state().startup();
 
+		}
 
-	pub fn Tick(&mut self, dt: f32, event_queue: &mut EventQueue, render_queue: &mut RenderQueue) -> EngineState {
-		self.engine_state = {
+		let engine_state = {
 			let current_state = self.get_current_state();
 
 			current_state.queue_event_handlers(event_queue);
 			current_state.queue_renderers(render_queue);
 
-			current_state.Tick(dt)
+			current_state.tick(dt)
 		};
 		 
 		
-		//TODO - transition!
-		match self.engine_state {
-			StateTransition(id) => {},
+		match engine_state {
+			StateTransition(id) => {
+				self.transition_info.transitioning = true;
+				self.transition_info.next_state_id = id; 
+			},
 			_ => {} 
 		}
 
-		return self.engine_state
+		return engine_state
 	}
 
 	fn get_current_state<'a>(&'a mut self) -> &'a mut ~State: {

@@ -1,12 +1,12 @@
 use engine::state::{State, EngineState, NoChange, StateTransition, EngineShutdown};
 
-use engine::resource_loader::{ResourceLoader, Font};
+use engine::resource_loader::{ResourceLoader};
 use engine::rendering::{RenderContext, RenderQueue};
 
 use engine::event_queue::{EventQueue, EventHandler};
 use engine::asd::{ASD};
 
-use rsfml::graphics::{Color, Text, FloatRect, RectangleShape, Font};
+use rsfml::graphics::{Color, Text, RectangleShape, Font};
 use rsfml::window::event; 
 
 use game::colors;
@@ -97,8 +97,8 @@ impl<'a> MenuItem<'a> {
 
 
 	fn push_to_queue(&self, queue: &mut RenderQueue) {
-		queue.attach(&self.back);
-		queue.attach(&self.text);
+		queue.push(&self.back);
+		queue.push(&self.text);
 		
 	}
 }
@@ -111,7 +111,7 @@ impl<'a> MainMenu<'a>{
 
 		let font_size_banner = 90;
 		let font_size_menu = 70;
-		let font = loader.getFont(~"MenuFont");
+		let font = loader.get_font(~"MenuFont");
 
 		let menu_tags = ~[TAG_PLAY, TAG_OPTIONS, TAG_QUIT];
 		let menu_names = ~[&"play", &"options", &"quit"];
@@ -121,7 +121,7 @@ impl<'a> MainMenu<'a>{
 		
 		let render_dim = render_ctx.viewport_dim;
 		let mut current_y = top_padding;
-		let mut current_x = 0.;
+		let mut current_x : f32 = 0.;
 		
 		//banner---------
 		let mut banner = Text::new_init("equinox", font, font_size_banner).unwrap();
@@ -158,37 +158,37 @@ impl<'a> MainMenu<'a>{
 		}
 	}
 
-	fn Handle_Click(tag: MenuItemTag) -> EngineState{
+	fn handle_click(tag: MenuItemTag) -> EngineState{
 		match tag {
 			TAG_PLAY => StateTransition(game::GAME_STATE_ID as int),
 			TAG_OPTIONS => StateTransition(game::OPTIONS_STATE_ID as int),
-			Exit => EngineShutdown,
+			TAG_QUIT => EngineShutdown,
 		}
 	}
 }
 
 impl<'a> State for MainMenu<'a> {
 	fn queue_event_handlers(&mut self, event_queue: &mut EventQueue){
-		event_queue.attach(&mut self.handler);
+		event_queue.push(&mut self.handler);
 	}
 	
 	fn queue_renderers(&mut self, render_queue: &mut RenderQueue){
 		render_queue.set_clear_color(colors::black);
-		render_queue.attach(&self.banner);
+		render_queue.push(&self.banner);
 
 		for item in self.menu_items.iter() {
 			item.push_to_queue(render_queue);
 		}
 	}
 
-	fn Tick(&mut self, dt: f32) -> EngineState { 
+	fn tick(&mut self, dt: f32) -> EngineState { 
 		
 		for item in self.menu_items.mut_iter() {
 			item.update_state(dt, self.handler.x, self.handler.y);
 			
 			if self.handler.clicked && item.contains(self.handler.x, self.handler.y) {
 				
-				return MainMenu::Handle_Click(item.tag);
+				return MainMenu::handle_click(item.tag);
 			}	
 		}
 		
@@ -218,7 +218,7 @@ impl EventHandler for MainMenuHandler {
 				self.y = y as f32;
 			},
 
-			event::MouseButtonPressed {button, x, y} => {
+			event::MouseButtonPressed {..} => {
 				self.clicked = true;
 			},
 

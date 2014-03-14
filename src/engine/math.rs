@@ -1,6 +1,6 @@
 use num::rational::Ratio;
 
-use std::f32::{atan2, sqrt, sin, cos, tan, round};
+use std::f32::{atan2, sqrt, sin, cos, tan};
 use std::f32::consts::PI;
 use std::fmt::{Show, Formatter, Result};
 
@@ -87,7 +87,7 @@ impl Eq for vector2{
 
 impl Show for vector2 {
 	fn fmt(&self, formatter: &mut Formatter) -> Result {
-		let dirStr = AngleToDirStr(&self.polar().angle);
+		let dirStr = angle_to_dir_str(&self.polar().angle);
 		write!(formatter.buf, "\\{ {} | x: {:.2}, y:{:.2} \\}", dirStr, self.x, self.y)
 	}
 }
@@ -191,14 +191,14 @@ impl Show for Angle {
 			_ => format!("{}π/{}", n, d),
 		};
 
-		let dirStr = AngleToDirStr(self);
+		let dirStr = angle_to_dir_str(self);
 
 		write!(formatter.buf, "\\{ {} | rad: {} | {:.2}° \\}", dirStr, radStr, degrees)
 		
 	}
 }
 
-fn AngleToDirStr(Angle : &Angle) -> ~str {
+fn angle_to_dir_str(Angle : &Angle) -> ~str {
 	let principalAngle = angle_to_principal_domain(Angle.theta);
 	let degrees = (principalAngle * 180f32 / PI);
 
