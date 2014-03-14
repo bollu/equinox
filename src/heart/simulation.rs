@@ -1,18 +1,11 @@
-use engine::math::{vector2, Angle};
-use collections::ringbuf::RingBuf;
-use collections::deque::Deque;
+use engine::double_buffer::DoubleBuffer;
+use heart::simulation_state::SimulationState;
 
-pub type UniqID = uint;
-//yes, this is hard-coded.
-pub enum Component {
-	Position(vector2),
-	Facing(Angle),
+
+struct Simulation {
+	simulation: DoubleBuffer<SimulationState>,
 }
 
-pub struct Object {
-	id: UniqID,
+pub fn new() -> Simulation{
+	Simulation { simulation: DoubleBuffer::new( SimulationState::new(), SimulationState::new() )}
 }
-
-pub struct Simulation {
-	renderers: RingBuf<&'a rsfml::traits::Drawable:>,
-};
