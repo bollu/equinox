@@ -38,9 +38,10 @@ fn main () -> () {
             let event = window.poll();
 
             match event {
+                //HACK - this should be removed..
                 event::Closed => window.close(),
-                
                 event::NoEvent => break,
+
                 _ => { event_queue.send_event(&event) }
             }
         }

@@ -7,7 +7,7 @@ use engine::rendering::RenderContext;
 
 pub mod colors;
 pub mod main_menu;
-
+pub mod game_state;
 
 pub fn load_resources(loader: &mut ResourceLoader) {
  	let obelix_font = graphics::Font::new_from_file("res/font/AlegreyaSansSC-Light.ttf").unwrap();
@@ -23,5 +23,7 @@ pub enum State {
 pub fn init_states(state_machine: &mut StateMachine, loader: &ResourceLoader, ctx: &RenderContext) {
     state_machine.add_state(MAIN_MENU_STATE_ID as int, ~main_menu::MainMenu::new(loader, ctx));
     state_machine.set_default_state(MAIN_MENU_STATE_ID as int);
+
+    state_machine.add_state(GAME_STATE_ID as int, ~game_state::GameState::new(loader, ctx));
 }
 
