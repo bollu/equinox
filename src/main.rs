@@ -1,7 +1,13 @@
+
 extern crate num;
 extern crate native;
 extern crate rsfml;
 extern crate collections;
+
+#[feature(phase)] extern crate log;
+#[phase(syntax, link)]
+
+
 
 use rsfml::window::{event};
 
@@ -16,7 +22,7 @@ use engine::state::EngineShutdown;
 
 pub mod engine;
 pub mod game;
-
+pub mod heart;
 
 fn main () -> () {
     let settings = settings::Settings::new(~"settings");

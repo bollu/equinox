@@ -1,6 +1,8 @@
 use std::hashmap::HashMap;
 use std::io::fs::File;
 
+#[feature(phase)]
+
 pub type key = ~str;
 
 
@@ -67,7 +69,7 @@ impl Settings {
 			let dataPair : ~[&str] = line.split(':').collect();
 			
 			if dataPair.len() != 2 {
-				::warn!("faulty data pair: {}", dataPair);
+			//	warn!("faulty data pair: {}", dataPair);
 				continue;
 			}
 
@@ -76,12 +78,12 @@ impl Settings {
 
 			let setting = Settings::gen_setting(name, valueStr);
 
-			::debug!("name: {}, Setting: {}", name, setting);
+			//debug!("name: {}, Setting: {}", name, setting);
 
 			key_value_pair.insert(name.to_owned(), setting);
 		}
 
-		::debug!("key_value_pair: {}", key_value_pair);
+		//debug!("key_value_pair: {}", key_value_pair);
 		key_value_pair
 	}
 	

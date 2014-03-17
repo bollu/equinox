@@ -1,27 +1,21 @@
-use std::mem::swap;
-
 //front and back buffer terminology
 pub struct DoubleBuffer<T> {
 	front: T,
 	back: T,
 }
 
-impl<T> DoubleBuffer<T> {
-	pub fn new(front : T,back : T) -> DoubleBuffer<T> {
-		DoubleBuffer { front: front, back: back}
+impl<T: Clone> DoubleBuffer<T> {
+	pub fn new(front: T, back: T) -> DoubleBuffer<T> {
+		DoubleBuffer { front: front, back: back }
 	}
 
-	pub fn front<'a>(&'a mut self) -> &'a mut T {
-		&mut self.front
-	}
-
-	pub fn back<'a>(&'a self) -> &'a T {
-		&self.back
+	pub fn front_and_back<'a>(&'a mut self) -> (&'a T, &'a mut T) {
+		let DoubleBuffer{ ref front, ref mut back} = *self;
+		(front, back)
 	}
 
 	pub fn flip(&mut self) {
-		swap(&mut self.front, &mut self.back);
+		let DoubleBuffer { ref mut front, ref back } = *self;
+		front.clone_from(back);
 	}
-
 }
-

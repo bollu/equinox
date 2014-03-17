@@ -7,10 +7,12 @@ use std::fmt::{Show, Formatter, Result};
 type coord = f32;
 type rawAngle = f32;
 
+#[deriving(Clone)]
 pub struct vector2 {
 	x: coord,
 	y: coord,
 }
+
 
 impl vector2 {
 	pub fn null() -> vector2 {
@@ -98,6 +100,7 @@ pub fn dot(v1: vector2, v2: vector2) -> f32 {
 
 
 //Angle---
+#[deriving(Clone)]
 pub struct Angle {
 	//in radians
 	theta: rawAngle,
