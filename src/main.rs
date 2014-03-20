@@ -1,4 +1,4 @@
-
+extern crate serialize;
 extern crate num;
 extern crate native;
 extern crate rsfml;
@@ -18,6 +18,7 @@ use engine::rendering;
 use engine::event_queue;
 use engine::state;
 use engine::state::EngineShutdown;
+
 //use engine::math;
 
 pub mod engine;
@@ -25,7 +26,7 @@ pub mod game;
 pub mod heart;
 
 fn main () -> () {
-    let settings = settings::Settings::new(~"settings");
+    let mut settings = settings::Settings::new(~"settings");
     let mut window =  rendering::Window::new(800, 600, ~"equinox", false);
     let mut event_queue = event_queue::EventQueue::new();
     let mut render_queue = rendering::RenderQueue::new();
@@ -37,7 +38,7 @@ fn main () -> () {
 
     //create all states
     let render_context = window.get_context(); 
-    game::init_states(&mut state_machine, &resource_loader, &render_context);
+    game::init_states(&mut state_machine, &resource_loader, &render_context, &settings);
     
     while window.is_open() {
         loop {
@@ -45,7 +46,7 @@ fn main () -> () {
 
             match event {
                 //HACK - this should be removed..
-                event::Closed => window.close(),
+                //event::Closed => window.close(),
                 event::NoEvent => break,
 
                 _ => { event_queue.send_event(&event) }
