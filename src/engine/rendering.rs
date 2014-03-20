@@ -1,6 +1,6 @@
 extern crate rsfml;
 
-use engine::math::vector2;
+use engine::math::Vector2;
 use rsfml::graphics::{RenderWindow, Color};
 use rsfml::window::{ContextSettings, VideoMode, event, Close, Fullscreen, WindowStyle};
 
@@ -8,7 +8,7 @@ use collections::ringbuf::RingBuf;
 use collections::deque::Deque;
 
 pub struct RenderContext {
-	viewport_dim: vector2,
+	viewport_dim: Vector2,
 }
 
 pub struct Window {
@@ -55,7 +55,7 @@ impl Window {
 
 	pub fn get_context(&self) -> RenderContext {
 		let size = self.window.get_size();
-		RenderContext { viewport_dim: vector2::new(size.x as f32, size.y as f32) }
+		RenderContext { viewport_dim: Vector2::new(size.x as f32, size.y as f32) }
 	}
 
 	//only use if you're sure

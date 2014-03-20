@@ -1,35 +1,48 @@
-use engine::state::{State, EngineState, NoChange, StateTransition, EngineShutdown};
+use engine::state::{State, EngineState, NoChange, EngineShutdown};
 use engine::resource_loader::{ResourceLoader};
+use engine::settings::Settings;
 use engine::rendering::{RenderContext, RenderQueue};
-use engine::event_queue::{EventQueue, EventHandler};
-
-use heart::object::Object;
-use heart::simulation_state::SimulationState;
-use heart::simulation::Simulation;
+use engine::event_queue::{EventQueue};
 
 use game::colors;
+use game::level::Level;
 
-pub struct GameState {
+use heart::game_event_layer::GameEventLayer;
+
+pub struct GameState<'a> {
 	active: bool,
-	simulation: Simulation,
+	level: Level,
+	event_layer: GameEventLayer,
 }
 
-impl GameState {
-	pub fn new(loader: &ResourceLoader, render_ctx: &RenderContext) -> GameState {
+impl<'a> GameState<'a> {
+	pub fn new(loader: &ResourceLoader, _render_ctx: &RenderContext, settings: &Settings) -> GameState<'a> {
 		GameState { 
 			active: true,
-			simulation: Simulation::new()
+			level: Level::new(),
+			event_layer: GameEventLayer::new(settings),
 		}
 	}
 }
 
-impl State for GameState {
-	fn queue_event_handlers(&mut self, event_queue: &mut EventQueue){}
+impl<'a> State for GameState<'a> {
+	fn queue_event_handlers(&mut self, event_queue: &mut EventQueue){
+		event_queue.push(&mut self.event_layer);
+	}
+	
 	fn queue_renderers(&mut self, render_queue: &mut RenderQueue){
 		render_queue.set_clear_color(colors::blue);
+		self.level.queue_renderers(render_queue);
 	}
 	
 	fn tick(&mut self, dt: f32) -> EngineState { 
-		simulation.tick(dt);
+		self.level.update(dt);
+
+		return if self.event_layer.should_quit() {
+			 EngineShutdown
+		} else {
+			NoChange
+		}
+		
 	}
 }

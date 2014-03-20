@@ -4,31 +4,31 @@ use std::f32::{atan2, sqrt, sin, cos, tan};
 use std::f32::consts::PI;
 use std::fmt::{Show, Formatter, Result};
 
-type coord = f32;
-type rawAngle = f32;
+pub type Coord = f32;
+pub type RawAngle = f32;
 
 #[deriving(Clone)]
-pub struct vector2 {
-	x: coord,
-	y: coord,
+pub struct Vector2 {
+	x: Coord,
+	y: Coord,
 }
 
 
-impl vector2 {
-	pub fn null() -> vector2 {
-		vector2 { x: 0 as coord , y: 0 as coord } 
+impl Vector2 {
+	pub fn null() -> Vector2 {
+		Vector2 { x: 0 as Coord , y: 0 as Coord } 
 	}
 	
-	pub fn new(x: coord, y: coord) -> vector2 {
-		vector2 { x: x, y: y }
+	pub fn new(x: Coord, y: Coord) -> Vector2 {
+		Vector2 { x: x, y: y }
 	}
 
-	pub fn normalize(&self) -> vector2 {
+	pub fn normalize(&self) -> Vector2 {
 		let len = self.len();
 
 		match len {
-			0. => vector2::null(),
-			_ => vector2 {x: self.x / len, y : self.y / len}
+			0. => Vector2::null(),
+			_ => Vector2 {x: self.x / len, y : self.y / len}
 		}
 	}
 
@@ -46,55 +46,55 @@ impl vector2 {
 
 }
 
-impl Add<vector2, vector2> for vector2 {
-	fn add(&self, rhs: &vector2) -> vector2 {
-		vector2 { x : self.x + rhs.x,  y : self.y + rhs.y }
+impl Add<Vector2, Vector2> for Vector2 {
+	fn add(&self, rhs: &Vector2) -> Vector2 {
+		Vector2 { x : self.x + rhs.x,  y : self.y + rhs.y }
 	}
 }
 
-impl Sub<vector2, vector2> for vector2 {
-	fn sub(&self, rhs: &vector2) -> vector2 {
-		vector2 { x : self.x - rhs.x,  y : self.y - rhs.y }
+impl Sub<Vector2, Vector2> for Vector2 {
+	fn sub(&self, rhs: &Vector2) -> Vector2 {
+		Vector2 { x : self.x - rhs.x,  y : self.y - rhs.y }
 	}
 }
 
-impl Mul<f32, vector2> for vector2 {
-	fn mul(&self, rhs: &f32) -> vector2 {
-		vector2 { x : self.x * (*rhs),  y : self.y * (*rhs) }
+impl Mul<f32, Vector2> for Vector2 {
+	fn mul(&self, rhs: &f32) -> Vector2 {
+		Vector2 { x : self.x * (*rhs),  y : self.y * (*rhs) }
 	}
 }
 
 
-impl Div<f32, vector2> for vector2{
-	fn div(&self, rhs: &f32) -> vector2 {
-		vector2 { x : self.x / (*rhs),  y : self.y / (*rhs) }
+impl Div<f32, Vector2> for Vector2{
+	fn div(&self, rhs: &f32) -> Vector2 {
+		Vector2 { x : self.x / (*rhs),  y : self.y / (*rhs) }
 	}
 }
 
-impl Neg<vector2> for vector2 {
-	fn neg(&self) -> vector2 {
-		vector2 { x: -self.x, y: -self.y }
+impl Neg<Vector2> for Vector2 {
+	fn neg(&self) -> Vector2 {
+		Vector2 { x: -self.x, y: -self.y }
 	}
 }
 
-impl Eq for vector2{
-	fn eq(&self, other: &vector2) -> bool {
+impl Eq for Vector2{
+	fn eq(&self, other: &Vector2) -> bool {
 		self.x == other.x && self.y == other.y
 	}
 
-	fn ne(&self, other: &vector2) -> bool {
+	fn ne(&self, other: &Vector2) -> bool {
 		self.x != other.x || self.y != other.y
 	}
 }
 
-impl Show for vector2 {
+impl Show for Vector2 {
 	fn fmt(&self, formatter: &mut Formatter) -> Result {
 		let dirStr = angle_to_dir_str(&self.polar().angle);
 		write!(formatter.buf, "\\{ {} | x: {:.2}, y:{:.2} \\}", dirStr, self.x, self.y)
 	}
 }
 
-pub fn dot(v1: vector2, v2: vector2) -> f32 {
+pub fn dot(v1: Vector2, v2: Vector2) -> f32 {
 	v1.x * v2.x + v1.y * v2.y
 }
 
@@ -103,16 +103,16 @@ pub fn dot(v1: vector2, v2: vector2) -> f32 {
 #[deriving(Clone)]
 pub struct Angle {
 	//in radians
-	theta: rawAngle,
+	theta: RawAngle,
 }
 
 impl Angle {
 	
 	//constructors---
-	pub fn deg(deg: rawAngle) -> Angle {
+	pub fn deg(deg: RawAngle) -> Angle {
 		Angle { theta: Angle::clamp(deg.to_radians()) }
 	}
-	pub fn rad(rad: rawAngle) -> Angle{
+	pub fn rad(rad: RawAngle) -> Angle{
 		Angle { theta: Angle::clamp(rad) }
 	}
 
@@ -128,14 +128,14 @@ impl Angle {
 		tan(self.theta)
 	}
 
-	fn clamp(rad: rawAngle) -> rawAngle {
-		let tolerance = 2 as rawAngle;
-		let limit = (PI as rawAngle) *  tolerance;
+	fn clamp(rad: RawAngle) -> RawAngle {
+		let tolerance = 2 as RawAngle;
+		let limit = (PI as RawAngle) *  tolerance;
 
 		if rad > limit || rad < -limit {
-			return angle_to_principal_domain(rad);
+			angle_to_principal_domain(rad);
 		}
-		return rad
+		rad
 	}
 }
 
@@ -184,7 +184,7 @@ impl Show for Angle {
 		let n = *ratio.numer();
 		let d = *ratio.denom();
 
-		let degrees = (self.theta * 180f32 / PI);
+		let degrees = self.theta * (180f32 / PI);
 		
 		let radStr = match (n, d) {
 			(0, _) => ~"0",
@@ -201,9 +201,9 @@ impl Show for Angle {
 	}
 }
 
-fn angle_to_dir_str(Angle : &Angle) -> ~str {
-	let principalAngle = angle_to_principal_domain(Angle.theta);
-	let degrees = (principalAngle * 180f32 / PI);
+fn angle_to_dir_str(angle : &Angle) -> ~str {
+	let principal_angle = angle_to_principal_domain(angle.theta);
+	let degrees = principal_angle * (180f32 / PI);
 
 	match (degrees / 45.).floor() as int {
 		0 => ~"→",
@@ -218,7 +218,7 @@ fn angle_to_dir_str(Angle : &Angle) -> ~str {
 	}
 } 
 
-//polar coordinates-----------------
+//polar Coordinates-----------------
 
 #[deriving(Show)]
 pub struct Polar {
@@ -244,8 +244,8 @@ impl Polar {
 	}
 
 	//member functions-----
-	pub fn cartesian(&self) -> vector2 {
-		vector2::new(self.angle.cos() * self.len, self.angle.sin() * self.len)
+	pub fn cartesian(&self) -> Vector2 {
+		Vector2::new(self.angle.cos() * self.len, self.angle.sin() * self.len)
 	}
 
 	pub fn normalize(&self) -> Polar {
@@ -274,17 +274,17 @@ impl Neg<Polar> for Polar {
 }
 
 //auxiliary helper functions--------------------------------
-fn angle_to_principal_domain(rad: rawAngle) -> rawAngle{
-	let twoPi = (2. * PI) as rawAngle;
+fn angle_to_principal_domain(rad: RawAngle) -> RawAngle{
+	let twoPi = (2. * PI) as RawAngle;
 
-	let mut clamped : rawAngle = rad % twoPi;
+	let mut clamped : RawAngle = rad % twoPi;
 
 	if clamped < 0. {
 		clamped += twoPi;
 	}
 	
-	assert!(clamped >= 0 as rawAngle && clamped < twoPi);
-	return clamped
+	assert!(clamped >= 0 as RawAngle && clamped < twoPi);
+	clamped
 }
 
 
@@ -292,8 +292,8 @@ fn angle_to_principal_domain(rad: rawAngle) -> rawAngle{
 
 #[test]
 fn test_vector_cons() {
-	let v1 = vector2::null();
-	let v2 = vector2::new(3.0, 4.0);
+	let v1 = Vector2::null();
+	let v2 = Vector2::new(3.0, 4.0);
 
 	assert!(v1.x == 0. && v1.y == 0.);
 	assert!(v2.x == 3. && v2.y == 4.);
@@ -301,9 +301,9 @@ fn test_vector_cons() {
 
 #[test]
 fn test_vector_normalize() {
-	let v1 = vector2::null();
-	let v2 = vector2::new(3.0, 4.0);
-	let v3 = vector2::new(1.0, 0.0);
+	let v1 = Vector2::null();
+	let v2 = Vector2::new(3.0, 4.0);
+	let v3 = Vector2::new(1.0, 0.0);
 
 	assert!(v1.normalize() == v1);
 	assert!(v3.normalize() == v3);
@@ -313,10 +313,10 @@ fn test_vector_normalize() {
 
 #[test]
 fn test_vector_len() {
-	let v1 = vector2::null();
-	let v2 = vector2::new(3.0, 4.0);
-	let v3 = vector2::new(1.0, 0.0);
-	let v4 = vector2::new(1.0, 1.0);
+	let v1 = Vector2::null();
+	let v2 = Vector2::new(3.0, 4.0);
+	let v3 = Vector2::new(1.0, 0.0);
+	let v4 = Vector2::new(1.0, 1.0);
 
 	assert!(v1.len() == 0. && v1.len_squared() == 0.);
 	assert!(v2.len() == 5.);
@@ -326,20 +326,20 @@ fn test_vector_len() {
 
 #[test]
 fn test_vector_operators() {
-	let v1 = vector2::null();
-	let v2 = vector2::new(3.0, 4.0);
-	let v3 = vector2::new(1.0, 0.0);
-	let v4 = vector2::new(1.0, 1.0);
-	let v5 = vector2::new(0.0, 1.0);
+	let v1 = Vector2::null();
+	let v2 = Vector2::new(3.0, 4.0);
+	let v3 = Vector2::new(1.0, 0.0);
+	let v4 = Vector2::new(1.0, 1.0);
+	let v5 = Vector2::new(0.0, 1.0);
 
 	assert!(v1 + v2 == v2);
 	assert!(v1 + v1 == v1);
 	assert!(v4 + v4 == v4 * 2.);
-	assert!(v3 + v4 == vector2::new(2.0, 1.0));
+	assert!(v3 + v4 == Vector2::new(2.0, 1.0));
 
 	assert!(v2 - v1 == v2);
 	assert!(v2 - v2 == v1);
-	assert!(v4 - v3 == vector2::new(0.0, 1.0));
+	assert!(v4 - v3 == Vector2::new(0.0, 1.0));
 
 	assert!(v2 != v1);
 	assert!(v3 != v4 && v5 != v4 && v5 != v3);
@@ -347,7 +347,7 @@ fn test_vector_operators() {
 
 #[test]
 fn test_cartesian_polar() {
-	let v1 = vector2::null();
+	let v1 = Vector2::null();
 	let a1 = v1.polar();
 
 	assert!(a1.len == 0.);

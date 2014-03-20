@@ -1,22 +1,31 @@
-use std::hashmap::HashMap;
+use collections::hashmap::HashMap;
 use engine::rendering::RenderQueue;
 use engine::event_queue::EventQueue;
 
-type StateId = int;
+use engine::settings::Settings;
+
+pub type StateId = int;
+
+#[deriving(Eq)]
+pub enum StateData {
+	NoStateData,
+	IntStateData(int),
+}
 
 #[deriving(Eq)]
 pub enum EngineState {
-	StateTransition(StateId), //UID of state
+	StateTransition(StateId, StateData), //UID of state, Data to be sent
 	EngineShutdown, //shut down and close
 	NoChange
 }
+
 
 pub trait State {
 	//TODO: make these opposites...
 	fn queue_event_handlers(&mut self, queue: &mut EventQueue);
 	fn queue_renderers(&mut self, queue: &mut RenderQueue);
 
-	fn startup(&mut self) { }
+	fn startup(&mut self, _data: StateData) { }
 	fn shutdown(&mut self) { }
 
 	fn tick(&mut self, dt: f32) -> EngineState;
@@ -25,18 +34,19 @@ pub trait State {
 struct TransitionInfo {
 	transitioning: bool,
 	next_state_id: StateId,
+	data: StateData,
 }
 
 pub struct StateMachine {
-	states: HashMap<StateId, ~State:>,
-	current_id: StateId,
-	transition_info: TransitionInfo,
+	priv states: HashMap<StateId, ~State:>,
+	priv current_id: StateId,
+	priv transition_info: TransitionInfo,
 
 }
 
 impl TransitionInfo {
 	pub fn new() -> TransitionInfo {
-		TransitionInfo { transitioning: false, next_state_id: 0 }
+		TransitionInfo { transitioning: false, next_state_id: 0, data: NoStateData }
 	}
 }
 
@@ -53,7 +63,8 @@ impl StateMachine {
 		self.states.insert(id, state);
 	}
 
-	pub fn tick(&mut self, dt: f32, event_queue: &mut EventQueue, render_queue: &mut RenderQueue) -> EngineState {
+	pub fn tick(&mut self, 
+				dt: f32, event_queue: &mut EventQueue, render_queue: &mut RenderQueue) -> EngineState {
 		
 		if self.transition_info.transitioning {
 			//ask current state to shutdown
@@ -63,7 +74,7 @@ impl StateMachine {
 			self.transition_info.transitioning = false;
 			
 			//now that the current_id has changed, let's launch the next state
-			self.get_current_state().startup();
+			self.get_current_state().startup(self.transition_info.data);
 
 		}
 
@@ -78,17 +89,18 @@ impl StateMachine {
 		 
 		
 		match engine_state {
-			StateTransition(id) => {
+			StateTransition(id, data) => {
 				self.transition_info.transitioning = true;
+				self.transition_info.data = data;
 				self.transition_info.next_state_id = id; 
 			},
 			_ => {} 
 		}
 
-		return engine_state
+		engine_state
 	}
 
 	fn get_current_state<'a>(&'a mut self) -> &'a mut ~State: {
-		return self.states.get_mut(&self.current_id)	
+		self.states.get_mut(&self.current_id)	
 	}
 }

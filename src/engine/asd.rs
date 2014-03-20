@@ -8,15 +8,15 @@ enum State {
 }
 
 pub struct ASD {
-	base_value: f32,
-	sustain_value: f32,
+	priv base_value: f32,
+	priv sustain_value: f32,
 
 
-	attack_slope: f32,
-	decay_slope: f32,
+	priv attack_slope: f32,
+	priv decay_slope: f32,
 
-	current_value: f32,
-	state: State,
+	priv current_value: f32,
+	priv state: State,
 
 }
 
@@ -93,20 +93,7 @@ impl ASD{
 		}
 	}
 
-	pub fn val(&self) -> f32 {
-		//let state : State = self.state;
+	pub fn val(&self) -> f32 {	
 		self.current_value
-		/*match state {
-			Sustain => return self.sustain_value.clone(),
-			Comatose => return self.base_value.clone(),
-
-			Attack => {
-				return lerp( &self.base_value, &self.sustain_value, self.current_time / self.attack_time);
-			},
-
-			Decay => {
-				return lerp( &self.sustain_value, &self.base_value, self.current_time / self.decay_time);
-			}
-		}*/
 	}
 }

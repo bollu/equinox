@@ -1,9 +1,7 @@
 use rsfml::graphics;
-use std::hashmap::HashMap;
+use collections::hashmap::HashMap;
 
-	
-type Key = ~str;
-
+pub type Key = ~str;
 
 pub enum Resource {
 	Font(graphics::Font),
@@ -11,7 +9,7 @@ pub enum Resource {
 }
 
 pub struct ResourceLoader {
-    resources: HashMap<Key, Resource>,
+    priv resources: HashMap<Key, Resource>,
 
 }
 
@@ -35,7 +33,7 @@ impl ResourceLoader {
 
 	fn get_resource<'a>(&'a self, key: &Key) -> &'a Resource {
 		match self.resources.find(key) {
-			Some(resource) => return resource,
+			Some(resource) => resource,
 			None => fail!("unable to find resource {}", *key),
 		}
 	}

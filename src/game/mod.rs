@@ -2,12 +2,17 @@ use rsfml::graphics;
 use engine::resource_loader::{ResourceLoader, Font};
 
 use engine::state::StateMachine;
-
 use engine::rendering::RenderContext;
+use engine::settings::Settings;
 
 pub mod colors;
 pub mod main_menu;
 pub mod game_state;
+pub mod slot_select_menu;
+pub mod level;
+pub mod terrain;
+pub mod ui;
+pub mod savefile;
 
 pub fn load_resources(loader: &mut ResourceLoader) {
  	let obelix_font = graphics::Font::new_from_file("res/font/AlegreyaSansSC-Light.ttf").unwrap();
@@ -15,15 +20,24 @@ pub fn load_resources(loader: &mut ResourceLoader) {
 }
 
 pub enum State {
-	MAIN_MENU_STATE_ID = 1,
-	GAME_STATE_ID = 2,
-	OPTIONS_STATE_ID = 3,
+	MainMenuStateID,
+	GameStateID,
+	SlotSelectStateID,
+	OptionsStateID,
 }
 
-pub fn init_states(state_machine: &mut StateMachine, loader: &ResourceLoader, ctx: &RenderContext) {
-    state_machine.add_state(MAIN_MENU_STATE_ID as int, ~main_menu::MainMenu::new(loader, ctx));
-    state_machine.set_default_state(MAIN_MENU_STATE_ID as int);
+pub static NUM_SLOTS : int = 6;
 
-    state_machine.add_state(GAME_STATE_ID as int, ~game_state::GameState::new(loader, ctx));
+
+pub fn init_states(state_machine: &mut StateMachine, 
+				loader: &ResourceLoader, 
+				ctx: &RenderContext, 
+				settings: &Settings) {
+
+    state_machine.add_state(MainMenuStateID as int, ~main_menu::MainMenu::new(loader, ctx));
+    state_machine.set_default_state(MainMenuStateID as int);
+
+    state_machine.add_state(SlotSelectStateID as int, ~slot_select_menu::SlotSelectMenu::new(loader, ctx));
+    state_machine.add_state(GameStateID as int, ~game_state::GameState::new(loader, ctx, settings));
 }
 
