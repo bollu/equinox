@@ -4,8 +4,13 @@ use std::f32::{atan2, sqrt, sin, cos, tan};
 use std::f32::consts::PI;
 use std::fmt::{Show, Formatter, Result};
 
+
+//hack
+use rsfml::system::vector2::{Vector2f, Vector2i};
+
 pub type Coord = f32;
 pub type RawAngle = f32;
+
 
 #[deriving(Clone)]
 pub struct Vector2 {
@@ -22,6 +27,14 @@ impl Vector2 {
 	pub fn new(x: Coord, y: Coord) -> Vector2 {
 		Vector2 { x: x, y: y }
 	}
+
+	pub fn from_sfml_f(v: &Vector2f) -> Vector2 {
+		Vector2 { x: v.x, y: v.y }
+	}
+
+	/*pub fn from_sfml_i(v: &Vector2i) -> Vector2 {
+		Vector2 { x: v.x, y: v.y }
+	}*/
 
 	pub fn normalize(&self) -> Vector2 {
 		let len = self.len();
@@ -43,6 +56,14 @@ impl Vector2 {
 	pub fn polar(&self) -> Polar{
 		Polar::new(Angle::rad(atan2(self.y, self.x)), self.len())
 	}
+
+	pub fn to_sfml_f(&self) -> Vector2f {
+		Vector2f { x: self.x, y: self.y }
+	}
+
+	/*pub fn to_sfml_i(&self) -> Vector2i {
+		Vector2i { self.x as int, self.y as int }
+	}*/
 
 }
 

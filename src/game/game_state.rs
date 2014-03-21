@@ -1,8 +1,9 @@
-use engine::state::{State, EngineState, NoChange, EngineShutdown};
+use engine::state::{State, EngineState, NoChange, EngineShutdown, StateData, IntStateData};
 use engine::resource_loader::{ResourceLoader};
 use engine::settings::Settings;
 use engine::rendering::{RenderContext, RenderQueue};
 use engine::event_queue::{EventQueue};
+
 
 use game::colors;
 use game::level::Level;
@@ -11,7 +12,7 @@ use heart::game_event_layer::GameEventLayer;
 
 pub struct GameState<'a> {
 	active: bool,
-	level: Level,
+	level: Level<'a>,
 	event_layer: GameEventLayer,
 }
 
@@ -23,15 +24,23 @@ impl<'a> GameState<'a> {
 			event_layer: GameEventLayer::new(settings),
 		}
 	}
+
 }
 
 impl<'a> State for GameState<'a> {
+	fn startup(&mut self, data: StateData) { 
+		let value = match data {
+			IntStateData(i) => i,
+			_ => fail!()
+		};
+	}
+
 	fn queue_event_handlers(&mut self, event_queue: &mut EventQueue){
 		event_queue.push(&mut self.event_layer);
 	}
 	
 	fn queue_renderers(&mut self, render_queue: &mut RenderQueue){
-		render_queue.set_clear_color(colors::blue);
+		render_queue.set_clear_color(colors::yellow);
 		self.level.queue_renderers(render_queue);
 	}
 	
