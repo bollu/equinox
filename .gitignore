@@ -1,3 +1,7 @@
 .tup/*
 bin/equinox
 bin/equinox-tests
+sublime_*
+slot_*
+save_*
+res/font/*
