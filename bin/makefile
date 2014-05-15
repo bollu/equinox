@@ -15,6 +15,15 @@ bench:
 run:
 	@echo 
 	
+	@./equinox
+	
+	@echo
+	@echo "---------"
+	@echo
+
+run-debug:
+	@echo 
+	
 	@RUST_LOG=debug ./equinox
 	
 	@echo

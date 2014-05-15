@@ -1,4 +1,4 @@
-use std::vec_ng::Vec;
+use std::Vec;
 
 use engine::state::{State, EngineState, NoChange, StateTransition, IntStateData, EngineShutdown};
 use engine::resource_loader::{ResourceLoader};
@@ -89,7 +89,7 @@ impl<'a> State for SlotSelectMenu<'a> {
 	fn queue_renderers(&mut self, render_queue: &mut RenderQueue){
 		render_queue.set_clear_color(colors::black);
 		
-		for item in self.menu_items.iter() {
+		for item in self.menu_items.mut_iter() {
 			item.push_to_queue(render_queue);
 		}
 	}

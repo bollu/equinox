@@ -2,7 +2,8 @@ use rsfml::window::keyboard;
 
 use rsfml::window::event;
 
-use engine::event_queue::{EventHandler};
+use engine::event_queue;
+use engine::event_queue::{EventHandler, RawEvent};
 use engine::settings::Settings;
 
 pub enum GameEvents {
@@ -76,13 +77,13 @@ impl GameEventLayer {
 }
 
 impl EventHandler for GameEventLayer {
-	fn handle_event(&mut self, event : &event::Event) {
+	fn handle_event(&mut self, event : &RawEvent) {
 
 		match *event {
-			event::KeyPressed { code, .. }  => self.handle_key_press(code),
-			event::KeyReleased { code, .. }  => self.handle_key_release(code),
+			event_queue::KeyPressed { code, .. }  => self.handle_key_press(code),
+			event_queue::KeyReleased { code, .. }  => self.handle_key_release(code),
 
-			event::Closed => self.meta_quit = true,
+			event_queue::Closed => self.meta_quit = true,
 
 			_ => return
 		};

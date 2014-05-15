@@ -15,7 +15,7 @@ pub mod ui;
 pub mod savefile;
 
 pub fn load_resources(loader: &mut ResourceLoader) {
- 	let obelix_font = graphics::Font::new_from_file("res/font/AlegreyaSansSC-Light.ttf").unwrap();
+ 	let obelix_font = graphics::Font::new_from_file("res/MenuFont.ttf").unwrap();
     loader.add_resource(~"MenuFont", Font(obelix_font));
 }
 

@@ -1,6 +1,8 @@
 use rsfml::graphics::{Color, Text, RectangleShape, Font};
-use rsfml::window::event;
-use engine::event_queue::EventHandler;
+
+use engine::event_queue::{EventHandler, RawEvent};
+use engine::event_queue;
+
 use game::colors;
 use engine::asd::ASD;
 use engine::rendering::RenderQueue;
@@ -77,9 +79,9 @@ impl<'a, T> MenuItem<'a, T> {
 	}
 
 
-	pub fn push_to_queue(&self, queue: &mut RenderQueue) {
-		queue.push(&self.back);
-		queue.push(&self.text);
+	pub fn push_to_queue(&mut self, queue: &mut RenderQueue) {
+		queue.push(&mut self.back);
+		queue.push(&mut self.text);
 		
 	}
 }
@@ -100,18 +102,18 @@ impl SimpleMenuHandler {
 }
 
 impl EventHandler for SimpleMenuHandler {
-	fn handle_event(&mut self, event : &event::Event) {
+	fn handle_event(&mut self, event : &RawEvent) {
 		match *event {
-			event::MouseMoved { x, y } => {
-				self.x = x as f32; 
-				self.y = y as f32;
+			event_queue::MouseMoved { pos } => {
+				self.x = pos.x; 
+				self.y = pos.y;
 			},
 
-			event::MouseButtonPressed {..} => {
+			event_queue::MouseButtonPressed {..} => {
 				self.clicked = true;
 			},
 
-			event::Closed => {
+			event_queue::Closed => {
 				self.window_closed = true;
 			}
 

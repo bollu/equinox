@@ -1,6 +1,6 @@
 use collections::hashmap::HashMap;
 use std::io::fs::File;
-use std::vec_ng::Vec;
+use std::Vec;
 
 pub type Key = ~str;
 
@@ -12,7 +12,7 @@ pub enum Setting {
 	String(~str),
 	Vector(f32, f32),
 	Bool(bool),
-	Error()
+	Error
 }
 
 pub struct Settings<'a> {

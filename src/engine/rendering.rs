@@ -1,11 +1,18 @@
 extern crate rsfml;
-
 use engine::math::Vector2;
+
+use rsfml::system::vector2::Vector2i;
 use rsfml::graphics::{RenderWindow, Color};
 use rsfml::window::{ContextSettings, VideoMode, event, Close, Fullscreen, WindowStyle};
+use rsfml::graphics::View;
+use rsfml::traits::Drawable;
 
 use collections::ringbuf::RingBuf;
 use collections::deque::Deque;
+
+use std::rc::Rc;
+use std::cell::RefCell;
+
 
 pub struct RenderContext {
 	viewport_dim: Vector2,
@@ -58,25 +65,56 @@ impl Window {
 		RenderContext { viewport_dim: Vector2::new(size.x as f32, size.y as f32) }
 	}
 
+
+	pub fn screen_to_game(&self, screen: &Vector2i) -> Vector2 {
+		Vector2::from_sfml_f(&self.window.map_pixel_to_coords_current_view(screen))
+	}
+
 	//only use if you're sure
 	pub fn get_render_window<'a>(&'a mut self) -> &'a mut RenderWindow {
 		&mut self.window
 	}
 }
 
+pub trait EngineDrawable {
+	fn Draw(&mut self, render_window: &mut RenderWindow);
+}
 
+#[feature(macro_rules)]
+macro_rules! impl_engine_drawable {
+    ($T:ty) => {
+        impl<'a> EngineDrawable for $T {
+            fn Draw(&mut self, render_window: &mut RenderWindow) {
+                self.draw_in_render_window(render_window);
+            }
+        }
+    }
+}
+
+impl_engine_drawable!(rsfml::graphics::RectangleShape<'a>)
+impl_engine_drawable!(rsfml::graphics::Text<'a>)
+impl_engine_drawable!(rsfml::graphics::CircleShape<'a>)
 
 pub struct RenderQueue<'a> {
-	renderers: RingBuf<&'a rsfml::traits::Drawable:>,
+	renderers: RingBuf<&'a mut EngineDrawable:>,
 	clear_color: Color,
+	view: Rc<RefCell<View>>,
 }
 
 impl<'a> RenderQueue<'a> {
-	pub fn new() -> RenderQueue {
-		RenderQueue { renderers: RingBuf::new(), clear_color: Color::new_RGB(0, 0, 20) }
+	pub fn new(window: &mut Window) -> RenderQueue { 
+
+		let mut view = window.get_render_window().get_default_view();
+		
+		RenderQueue { 
+			renderers: RingBuf::new(), 
+			clear_color: Color::new_RGB(0, 0, 20), 
+			view: view,
+		}
+		
 	}
 
-	pub fn push(&mut self, renderer: &'a rsfml::traits::Drawable: ) {
+	pub fn push(&mut self, renderer: &'a mut EngineDrawable:) {
 		self.renderers.push_back(renderer);
 	}
 
@@ -87,15 +125,26 @@ impl<'a> RenderQueue<'a> {
 
 	pub fn render(&mut self, window: &mut Window) {
 		window.clear(self.clear_color);
+		let mut render_window = window.get_render_window();
 
-		let render_window = window.get_render_window();
+		render_window.set_view(self.view.clone()); 
+		
+		
 
-		for renderer in self.renderers.iter() {
-			renderer.draw_in_render_window(render_window);
+
+		for renderer in self.renderers.mut_iter() {
+			renderer.Draw(render_window);
 		}
 
 		self.renderers.clear();
 	}
 
+	pub fn get_view(&mut self) -> Rc<RefCell<View>> {
+		self.view.clone()
+	}
+}
 
+
+pub struct Camera {
+	center: Vector2,
 }

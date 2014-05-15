@@ -20,8 +20,8 @@ impl<'a> Player<'a> {
 		self.renderer.update(&self.representation, dt);
 	}
 
-	pub fn push_to_queue(&self, render_queue: &mut RenderQueue) {
-		render_queue.push(&self.renderer.render);
+	pub fn push_to_queue(&mut self, render_queue: &mut RenderQueue) {
+		render_queue.push(&mut self.renderer.render);
 	}
 }
 
