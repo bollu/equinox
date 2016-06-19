@@ -20,9 +20,9 @@ pub enum MenuItemTag {
 }
 
 pub struct MainMenu<'a> {
-	priv banner: Text<'a>,
-	priv menu_items: Vec<MenuItem<'a, MenuItemTag>>,
-	priv handler: SimpleMenuHandler,
+	banner: Text<'a>,
+	menu_items: Vec<MenuItem<'a, MenuItemTag>>,
+	handler: SimpleMenuHandler,
 }
 
 
@@ -34,7 +34,7 @@ impl<'a> MainMenu<'a>{
 
 		let font_size_banner = 90;
 		let font_size_menu = 70;
-		let font = loader.get_font(~"MenuFont");
+		let font = loader.get_font("MenuFont".to_string());
 
 		let render_dim = render_ctx.viewport_dim;
 		let mut current_y = top_padding;

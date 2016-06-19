@@ -2,22 +2,22 @@ use collections::hashmap::HashMap;
 use std::io::fs::File;
 use std::vec_ng::Vec;
 
-pub type Key = ~str;
+pub type Key = String;
 
 
-#[deriving(Show)]
+#[derive(Debug)]
 pub enum Setting {
 	Int(int),
 	Float(f32),
-	String(~str),
+	String(String),
 	Vector(f32, f32),
 	Bool(bool),
-	Error()
+	Error
 }
 
 pub struct Settings<'a> {
-	priv settings_path: Path,
-	priv key_value_pair: HashMap<Key, Setting>
+	settings_path: Path,
+	key_value_pair: HashMap<Key, Setting>
 
 }
 
@@ -80,7 +80,7 @@ impl<'a> Settings<'a> {
 		}	
 	}
 
-	fn parse(data: ~str) -> HashMap<Key, Setting> {
+	fn parse(data: String) -> HashMap<Key, Setting> {
 
 		let mut key_value_pair = HashMap::new();
 

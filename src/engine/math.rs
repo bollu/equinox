@@ -12,7 +12,7 @@ pub type Coord = f32;
 pub type RawAngle = f32;
 
 
-#[deriving(Clone)]
+#[derive(Clone)]
 pub struct Vector2 {
 	x: Coord,
 	y: Coord,
@@ -111,7 +111,7 @@ impl Eq for Vector2{
 impl Show for Vector2 {
 	fn fmt(&self, formatter: &mut Formatter) -> Result {
 		let dirStr = angle_to_dir_str(&self.polar().angle);
-		write!(formatter.buf, "\\{ {} | x: {:.2}, y:{:.2} \\}", dirStr, self.x, self.y)
+		write!(formatter.buf, "{{ {} | x: {:.2}, y:{:.2} }}", dirStr, self.x, self.y)
 	}
 }
 
@@ -121,7 +121,7 @@ pub fn dot(v1: Vector2, v2: Vector2) -> f32 {
 
 
 //Angle---
-#[deriving(Clone)]
+#[derive(Clone)]
 pub struct Angle {
 	//in radians
 	theta: RawAngle,
@@ -208,8 +208,8 @@ impl Show for Angle {
 		let degrees = self.theta * (180f32 / PI);
 		
 		let radStr = match (n, d) {
-			(0, _) => ~"0",
-			(1, 1) => ~"π",
+			(0, _) => "0".to_string(),
+			(1, 1) => "π".to_string(),
 			(1, _) => format!("π/{}", d),
 			(_, 1) => format!("{}π", n),
 			_ => format!("{}π/{}", n, d),
@@ -217,31 +217,31 @@ impl Show for Angle {
 
 		let dirStr = angle_to_dir_str(self);
 
-		write!(formatter.buf, "\\{ {} | rad: {} | {:.2}° \\}", dirStr, radStr, degrees)
+		write!(formatter.buf, "{{ {} | rad: {} | {:.2}° }}", dirStr, radStr, degrees)
 		
 	}
 }
 
-fn angle_to_dir_str(angle : &Angle) -> ~str {
+fn angle_to_dir_str(angle : &Angle) -> String {
 	let principal_angle = angle_to_principal_domain(angle.theta);
 	let degrees = principal_angle * (180f32 / PI);
 
 	match (degrees / 45.).floor() as int {
-		0 => ~"→",
-		1 => ~"↗",
-		2 => ~"↑",
-		3 => ~"↖",
-		4 => ~"←",
-		5 => ~"↙",
-		6 => ~"↓",
-		7 => ~"↘",
-		_ => ~"⟳"
+		0 => "→".to_string(),
+		1 => "↗".to_string(),
+		2 => "↑".to_string(),
+		3 => "↖".to_string(),
+		4 => "←".to_string(),
+		5 => "↙".to_string(),
+		6 => "↓".to_string(),
+		7 => "↘".to_string(),
+		_ => "⟳".to_string()
 	}
 } 
 
 //polar Coordinates-----------------
 
-#[deriving(Show)]
+#[derive(Debug)]
 pub struct Polar {
 	angle: Angle,
 	len: f32

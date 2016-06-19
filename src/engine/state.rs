@@ -6,13 +6,13 @@ use engine::settings::Settings;
 
 pub type StateId = int;
 
-#[deriving(Eq)]
+#[derive(Eq)]
 pub enum StateData {
 	NoStateData,
 	IntStateData(int),
 }
 
-#[deriving(Eq)]
+#[derive(Eq)]
 pub enum EngineState {
 	StateTransition(StateId, StateData), //UID of state, Data to be sent
 	EngineShutdown, //shut down and close
@@ -38,9 +38,9 @@ struct TransitionInfo {
 }
 
 pub struct StateMachine {
-	priv states: HashMap<StateId, ~State:>,
-	priv current_id: StateId,
-	priv transition_info: TransitionInfo,
+	states: HashMap<StateId, Box<State>>,
+	current_id: StateId,
+	transition_info: TransitionInfo,
 
 }
 
@@ -59,7 +59,7 @@ impl StateMachine {
 		self.current_id = id;
 	}
 
-	pub fn add_state(&mut self, id: StateId, state: ~State:) {
+	pub fn add_state(&mut self, id: StateId, state: Box<State>) {
 		self.states.insert(id, state);
 	}
 
@@ -100,7 +100,7 @@ impl StateMachine {
 		engine_state
 	}
 
-	fn get_current_state<'a>(&'a mut self) -> &'a mut ~State: {
+	fn get_current_state<'a>(&'a mut self) -> &'a mut Box<State> {
 		self.states.get_mut(&self.current_id)	
 	}
 }

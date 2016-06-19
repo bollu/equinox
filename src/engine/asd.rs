@@ -1,5 +1,5 @@
 
- #[deriving(Eq)]
+ #[derive(Eq)]
 enum State {
 	Attack, //transitioning to sustain
 	Sustain, //in stasis
@@ -8,15 +8,15 @@ enum State {
 }
 
 pub struct ASD {
-	priv base_value: f32,
-	priv sustain_value: f32,
+	base_value: f32,
+	sustain_value: f32,
 
 
-	priv attack_slope: f32,
-	priv decay_slope: f32,
+	attack_slope: f32,
+	decay_slope: f32,
 
-	priv current_value: f32,
-	priv state: State,
+	current_value: f32,
+	state: State,
 
 }
 

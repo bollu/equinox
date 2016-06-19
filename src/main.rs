@@ -4,8 +4,11 @@ extern crate native;
 extern crate rsfml;
 extern crate collections;
 
-#[feature(phase)] extern crate log;
-#[phase(syntax, link)]
+// idk wth these lines were used for, couldn't find any other references
+// and the compiler complained. If the code doesn't use it maybe the
+// compiler does?
+//#[feature(phase)]extern crate log;
+//#[phase(syntax, link)]
 
 
 
@@ -26,8 +29,8 @@ pub mod game;
 pub mod heart;
 
 fn main () -> () {
-    let mut settings = settings::Settings::new(~"settings");
-    let mut window =  rendering::Window::new(800, 600, ~"equinox", false);
+    let mut settings = settings::Settings::new("settings".to_string());
+    let mut window =  rendering::Window::new(800, 600, "equinox".to_string(), false);
     let mut event_queue = event_queue::EventQueue::new();
     let mut render_queue = rendering::RenderQueue::new();
     let mut resource_loader = resource_loader::ResourceLoader::new();

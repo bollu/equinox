@@ -12,10 +12,10 @@ pub fn calculate_text_centering_x<'b>(text: &'b Text, total_x: f32) -> f32{
 }
 
 pub struct MenuItem<'a, T> {
-	priv text: Text<'a>,
-	priv back: RectangleShape<'a>,
-	priv default_color: Color,
-	priv animator: ASD,
+	text: Text<'a>,
+	back: RectangleShape<'a>,
+	default_color: Color,
+	animator: ASD,
 
 	data: T,
 }

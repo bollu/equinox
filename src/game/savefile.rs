@@ -4,7 +4,7 @@ use std::path::Path;
 use serialize::{json, Encodable, Decodable};
 use std::str::from_utf8;
 
-#[deriving(Encodable, Decodable)]
+#[derive(Encodable, Decodable)]
 pub struct Savefile {
 	slot: int,
 	open: bool,

@@ -1,7 +1,7 @@
 use rsfml::graphics;
 use collections::hashmap::HashMap;
 
-pub type Key = ~str;
+pub type Key = String;
 
 pub enum Resource {
 	Font(graphics::Font),
@@ -9,7 +9,7 @@ pub enum Resource {
 }
 
 pub struct ResourceLoader {
-    priv resources: HashMap<Key, Resource>,
+    resources: HashMap<Key, Resource>,
 
 }
 
@@ -27,14 +27,14 @@ impl ResourceLoader {
 
 		match *font {
 			Font(ref f) => f,
-			_ => fail!("unable to locate font {}", key),
+			_ => panic!("unable to locate font {}", key),
 		}
 	}
 
 	fn get_resource<'a>(&'a self, key: &Key) -> &'a Resource {
 		match self.resources.find(key) {
 			Some(resource) => resource,
-			None => fail!("unable to find resource {}", *key),
+			None => panic!("unable to find resource {}", *key),
 		}
 	}
 }

@@ -16,7 +16,7 @@ pub struct Window {
 }
 
 impl Window {
-	pub fn new(width: uint, height: uint, title: ~str, fullscreen: bool) -> Window{
+	pub fn new(width: uint, height: uint, title: String, fullscreen: bool) -> Window{
 		
 		let videoMode = VideoMode::new_init(width, height, 32);
 		let style : WindowStyle = if fullscreen { Fullscreen } else { Close };
@@ -67,7 +67,10 @@ impl Window {
 
 
 pub struct RenderQueue<'a> {
-	renderers: RingBuf<&'a rsfml::traits::Drawable:>,
+	// There was a colon at the end of Drawable before, it had
+	// (probably) something to do with opting out of builtin traits
+	// It was also in a couple of other locations too
+	renderers: RingBuf<&'a rsfml::traits::Drawable>,
 	clear_color: Color,
 }
 
@@ -76,7 +79,7 @@ impl<'a> RenderQueue<'a> {
 		RenderQueue { renderers: RingBuf::new(), clear_color: Color::new_RGB(0, 0, 20) }
 	}
 
-	pub fn push(&mut self, renderer: &'a rsfml::traits::Drawable: ) {
+	pub fn push(&mut self, renderer: &'a rsfml::traits::Drawable) {
 		self.renderers.push_back(renderer);
 	}
 

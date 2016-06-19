@@ -13,7 +13,7 @@ use game::savefile::{Savefile, read_save_from_disk, write_save_to_disk, save_exi
 
 
 pub struct SlotSelectMenu<'a> {
-	priv menu_items: Vec<MenuItem<'a, int>>,
+	menu_items: Vec<MenuItem<'a, int>>,
 	handler: SimpleMenuHandler,
 
 }
@@ -23,7 +23,7 @@ impl<'a> SlotSelectMenu<'a> {
 
 		let top_padding = 0.;
 		let font_size_menu = 40;
-		let font = loader.get_font(~"MenuFont");
+		let font = loader.get_font("MenuFont".to_string());
 
 		let render_dim = render_ctx.viewport_dim;
 		let mut current_y = top_padding;
@@ -113,6 +113,6 @@ impl<'a> State for SlotSelectMenu<'a> {
 }
 
 
-fn gen_save_path(index: int) -> ~str {
+fn gen_save_path(index: int) -> String {
 	"slot_" + index.to_str()
 }

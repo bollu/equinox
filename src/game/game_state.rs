@@ -31,7 +31,7 @@ impl<'a> State for GameState<'a> {
 	fn startup(&mut self, data: StateData) { 
 		let value = match data {
 			IntStateData(i) => i,
-			_ => fail!()
+			_ => panic!()
 		};
 	}
 
