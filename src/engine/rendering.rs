@@ -1,8 +1,8 @@
-//extern crate rsfml;
+//extern crate sfml;
 
 use engine::math::Vector2;
-use rsfml::graphics::{RenderWindow, Color};
-use rsfml::window::{ContextSettings, VideoMode, event, Close, Fullscreen, WindowStyle};
+use sfml::graphics::{RenderWindow, Color};
+use sfml::window::{ContextSettings, VideoMode, event, Close, Fullscreen, WindowStyle};
 
 use collections::ringbuf::RingBuf;
 use collections::deque::Deque;
@@ -70,7 +70,7 @@ pub struct RenderQueue<'a> {
 	// There was a colon at the end of Drawable before, it had
 	// (probably) something to do with opting out of builtin traits
 	// It was also in a couple of other locations too
-	renderers: RingBuf<&'a rsfml::traits::Drawable>,
+	renderers: RingBuf<&'a sfml::traits::Drawable>,
 	clear_color: Color,
 }
 
@@ -79,7 +79,7 @@ impl<'a> RenderQueue<'a> {
 		RenderQueue { renderers: RingBuf::new(), clear_color: Color::new_RGB(0, 0, 20) }
 	}
 
-	pub fn push(&mut self, renderer: &'a rsfml::traits::Drawable) {
+	pub fn push(&mut self, renderer: &'a sfml::traits::Drawable) {
 		self.renderers.push_back(renderer);
 	}
 

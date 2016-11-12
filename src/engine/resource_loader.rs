@@ -1,4 +1,4 @@
-use rsfml::graphics;
+use sfml::graphics;
 use collections::hashmap::HashMap;
 
 pub type Key = String;

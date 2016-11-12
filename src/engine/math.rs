@@ -6,7 +6,7 @@ use std::fmt::{Show, Formatter, Result};
 
 
 //hack
-use rsfml::system::vector2::{Vector2f, Vector2i};
+use sfml::system::vector2::{Vector2f, Vector2i};
 
 pub type Coord = f32;
 pub type RawAngle = f32;

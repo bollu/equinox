@@ -7,6 +7,7 @@ extern crate num;
 // so let's try to use that instead even if it looks like it will break
 // many things.
 //extern crate rsfml;
+extern crate sfml;
 extern crate collections;
 
 // idk wth these lines were used for, couldn't find any other references
@@ -17,7 +18,7 @@ extern crate collections;
 
 
 
-use rsfml::window::{event};
+use sfml::window::{event};
 
 use engine::resource_loader;
 //use engine::world;
@@ -25,7 +26,7 @@ use engine::settings;
 use engine::rendering;
 use engine::event_queue;
 use engine::state;
-use engine::state::EngineShutdown;
+use engine::state::EngineState::EngineShutdown;
 
 //use engine::math;
 

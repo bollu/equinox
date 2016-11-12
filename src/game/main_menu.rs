@@ -7,7 +7,7 @@ use engine::rendering::{RenderContext, RenderQueue};
 
 use engine::event_queue::EventQueue;
 
-use rsfml::graphics::Text;
+use sfml::graphics::Text;
 
 use game::colors;
 use game::ui::{calculate_text_centering_x, MenuItem, SimpleMenuHandler};

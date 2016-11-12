@@ -1,5 +1,5 @@
-use rsfml::graphics::{Color, Text, RectangleShape, Font};
-use rsfml::window::event;
+use sfml::graphics::{Color, Text, RectangleShape, Font};
+use sfml::window::event;
 use engine::event_queue::EventHandler;
 use game::colors;
 use engine::asd::ASD;

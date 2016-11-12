@@ -1,6 +1,6 @@
-use rsfml::window::keyboard;
+use sfml::window::keyboard;
 
-use rsfml::window::event;
+use sfml::window::event;
 
 use engine::event_queue::{EventHandler};
 use engine::settings::Settings;

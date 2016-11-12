@@ -1,19 +1,18 @@
-use rsfml::window::event;
+use sfml::window::event;
 
-use collections::ringbuf::RingBuf;
-use collections::deque::Deque;
+use std::collections::VecDeque;
 
 pub trait EventHandler {
 	fn handle_event(&mut self, event : &event::Event);
 }
 
 pub struct EventQueue<'a> {
-	handlers: RingBuf<&'a mut EventHandler>,
+	handlers: VecDeque<&'a mut EventHandler>,
 }
 
 impl<'a> EventQueue<'a> {
 	pub fn new() -> EventQueue {
-		EventQueue { handlers: RingBuf::new() }
+		EventQueue { handlers: VecDeque::new() }
 	}
 	pub fn push(&mut self, handler : &'a mut EventHandler) {
 		self.handlers.push_back(handler);

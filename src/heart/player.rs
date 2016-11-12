@@ -2,7 +2,7 @@ use engine::math::{Vector2, Angle};
 use heart::newtonian::Motion;
 
 use game::colors;
-use rsfml::graphics::CircleShape;
+use sfml::graphics::CircleShape;
 use engine::rendering::RenderQueue;
 
 pub struct Player<'a> {
