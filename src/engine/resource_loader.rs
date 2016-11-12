@@ -1,5 +1,5 @@
 use sfml::graphics;
-use collections::hashmap::HashMap;
+use std::collections::HashMap;
 
 pub type Key = String;
 

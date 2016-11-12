@@ -1,6 +1,6 @@
-use collections::hashmap::HashMap;
-use std::io::fs::File;
-use std::vec_ng::Vec;
+use std::collections::HashMap;
+use std::fs::File;
+use std::vec::Vec;
 
 pub type Key = String;
 

@@ -1,4 +1,4 @@
-use collections::hashmap::HashMap;
+use std::collections::HashMap;
 use engine::rendering::RenderQueue;
 use engine::event_queue::EventQueue;
 

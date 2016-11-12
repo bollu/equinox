@@ -2,10 +2,9 @@
 
 use engine::math::Vector2;
 use sfml::graphics::{RenderWindow, Color};
-use sfml::window::{ContextSettings, VideoMode, event, Close, Fullscreen, WindowStyle};
+use sfml::window::{ContextSettings, VideoMode, event, WindowStyle};
 
-use collections::ringbuf::RingBuf;
-use collections::deque::Deque;
+use std::collections::VecDeque;
 
 pub struct RenderContext {
 	viewport_dim: Vector2,
@@ -19,7 +18,7 @@ impl Window {
 	pub fn new(width: usize, height: usize, title: String, fullscreen: bool) -> Window{
 		
 		let videoMode = VideoMode::new_init(width, height, 32);
-		let style : WindowStyle = if fullscreen { Fullscreen } else { Close };
+		let style : WindowStyle = if fullscreen { WindowStyle::FULLSCREEN } else { WindowStyle::CLOSE };
 		let setting = ContextSettings::default();
 
 		Window { window: RenderWindow::new(videoMode, title, style, &setting).unwrap() }
@@ -70,13 +69,13 @@ pub struct RenderQueue<'a> {
 	// There was a colon at the end of Drawable before, it had
 	// (probably) something to do with opting out of builtin traits
 	// It was also in a couple of other locations too
-	renderers: RingBuf<&'a sfml::traits::Drawable>,
+	renderers: VecDeque<&'a sfml::traits::Drawable>,
 	clear_color: Color,
 }
 
 impl<'a> RenderQueue<'a> {
 	pub fn new() -> RenderQueue {
-		RenderQueue { renderers: RingBuf::new(), clear_color: Color::new_RGB(0, 0, 20) }
+		RenderQueue { renderers: VecDeque::new(), clear_color: Color::new_RGB(0, 0, 20) }
 	}
 
 	pub fn push(&mut self, renderer: &'a sfml::traits::Drawable) {
