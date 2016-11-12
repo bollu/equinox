@@ -1,4 +1,4 @@
-extern crate rsfml;
+//extern crate rsfml;
 
 use engine::math::Vector2;
 use rsfml::graphics::{RenderWindow, Color};
@@ -16,7 +16,7 @@ pub struct Window {
 }
 
 impl Window {
-	pub fn new(width: uint, height: uint, title: String, fullscreen: bool) -> Window{
+	pub fn new(width: usize, height: usize, title: String, fullscreen: bool) -> Window{
 		
 		let videoMode = VideoMode::new_init(width, height, 32);
 		let style : WindowStyle = if fullscreen { Fullscreen } else { Close };
@@ -45,12 +45,12 @@ impl Window {
 		self.window.display();
 	}
 
-	pub fn width(&self) -> uint {
-		self.window.get_size().x as uint
+	pub fn width(&self) -> usize {
+		self.window.get_size().x as usize
 	}
 	
-	pub fn height(&self) -> uint {
-		self.window.get_size().y as uint
+	pub fn height(&self) -> usize {
+		self.window.get_size().y as usize
 	}
 
 	pub fn get_context(&self) -> RenderContext {

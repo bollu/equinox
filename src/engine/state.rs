@@ -4,7 +4,7 @@ use engine::event_queue::EventQueue;
 
 use engine::settings::Settings;
 
-pub type StateId = int;
+pub type StateId = isize;
 
 #[derive(Eq)]
 pub enum StateData {

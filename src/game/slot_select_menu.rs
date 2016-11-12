@@ -13,7 +13,7 @@ use game::savefile::{Savefile, read_save_from_disk, write_save_to_disk, save_exi
 
 
 pub struct SlotSelectMenu<'a> {
-	menu_items: Vec<MenuItem<'a, int>>,
+	menu_items: Vec<MenuItem<'a, isize>>,
 	handler: SimpleMenuHandler,
 
 }
@@ -72,12 +72,12 @@ impl<'a> SlotSelectMenu<'a> {
 		}
 	}
 
-	pub fn create_first_time_save(index: int) -> Savefile{
+	pub fn create_first_time_save(index: isize) -> Savefile{
 		Savefile::new(index, true, 0)
 	}
 
-	pub fn handle_click(data: int) -> EngineState {
-		StateTransition(game::GameStateID as int, IntStateData(data))
+	pub fn handle_click(data: isize) -> EngineState {
+		StateTransition(game::GameStateID as isize, IntStateData(data))
 	} 
 }
 
@@ -113,6 +113,6 @@ impl<'a> State for SlotSelectMenu<'a> {
 }
 
 
-fn gen_save_path(index: int) -> String {
+fn gen_save_path(index: isize) -> String {
 	"slot_" + index.to_str()
 }

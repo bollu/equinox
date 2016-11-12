@@ -26,7 +26,7 @@ pub enum State {
 	OptionsStateID,
 }
 
-pub static NUM_SLOTS : int = 6;
+pub static NUM_SLOTS : isize = 6;
 
 
 pub fn init_states(state_machine: &mut StateMachine, 
@@ -34,10 +34,10 @@ pub fn init_states(state_machine: &mut StateMachine,
 				ctx: &RenderContext, 
 				settings: &Settings) {
 
-    state_machine.add_state(MainMenuStateID as int, Box::new(main_menu::MainMenu::new(loader, ctx)));
-    state_machine.set_default_state(MainMenuStateID as int);
+    state_machine.add_state(MainMenuStateID as isize, Box::new(main_menu::MainMenu::new(loader, ctx)));
+    state_machine.set_default_state(MainMenuStateID as isize);
 
-    state_machine.add_state(SlotSelectStateID as int, Box::new(slot_select_menu::SlotSelectMenu::new(loader, ctx)));
-    state_machine.add_state(GameStateID as int, Box::new(game_state::GameState::new(loader, ctx, settings)));
+    state_machine.add_state(SlotSelectStateID as isize, Box::new(slot_select_menu::SlotSelectMenu::new(loader, ctx)));
+    state_machine.add_state(GameStateID as isize, Box::new(game_state::GameState::new(loader, ctx, settings)));
 }
 

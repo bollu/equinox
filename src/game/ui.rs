@@ -28,7 +28,7 @@ pub struct SimpleMenuHandler {
 }
 
 impl<'a, T> MenuItem<'a, T> {
-	pub fn new(data: T, label: &str, font: &'a Font, font_size: uint, text_color: &Color, back_color: &Color) -> MenuItem<'a, T> {
+	pub fn new(data: T, label: &str, font: &'a Font, font_size: usize, text_color: &Color, back_color: &Color) -> MenuItem<'a, T> {
 		
 		let mut text = Text::new_init(label, font, font_size).unwrap();
 		text.set_color(text_color);

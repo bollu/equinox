@@ -6,10 +6,10 @@ use std::str::from_utf8;
 
 #[derive(Encodable, Decodable)]
 pub struct Savefile {
-	slot: int,
+	slot: isize,
 	open: bool,
 
-	level: int,
+	level: isize,
 }
 
 
@@ -41,7 +41,7 @@ pub fn read_save_from_disk(path: &str) -> Savefile {
 }
 
 impl Savefile {
-	pub fn new(slot: int, open: bool, level: int) -> Savefile {
+	pub fn new(slot: isize, open: bool, level: isize) -> Savefile {
 		Savefile {
 			slot: slot,
 			open: open,

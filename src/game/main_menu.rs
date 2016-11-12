@@ -84,8 +84,8 @@ impl<'a> MainMenu<'a>{
 
 	fn handle_click(tag: MenuItemTag) -> EngineState{
 		match tag {
-			TagPlay => StateTransition(game::SlotSelectStateID as int, IntStateData(0)),
-			TagOptions => StateTransition(game::OptionsStateID as int, NoStateData),
+			TagPlay => StateTransition(game::SlotSelectStateID as isize, IntStateData(0)),
+			TagOptions => StateTransition(game::OptionsStateID as isize, NoStateData),
 			TagQuit => EngineShutdown,
 		}
 	}

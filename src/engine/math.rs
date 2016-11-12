@@ -62,7 +62,7 @@ impl Vector2 {
 	}
 
 	/*pub fn to_sfml_i(&self) -> Vector2i {
-		Vector2i { self.x as int, self.y as int }
+		Vector2i { self.x as isize, self.y as isize }
 	}*/
 
 }
@@ -199,7 +199,7 @@ impl Show for Angle {
 		
 		let normalizedAngle = angle_to_principal_domain(self.theta); 
 		let simplificationFactor = 6;
-		let simplifiedNumerator = (normalizedAngle / PI * simplificationFactor as f32).round() as int;
+		let simplifiedNumerator = (normalizedAngle / PI * simplificationFactor as f32).round() as isize;
 		let ratio = Ratio::new(simplifiedNumerator, simplificationFactor);
 		
 		let n = *ratio.numer();
@@ -226,7 +226,7 @@ fn angle_to_dir_str(angle : &Angle) -> String {
 	let principal_angle = angle_to_principal_domain(angle.theta);
 	let degrees = principal_angle * (180f32 / PI);
 
-	match (degrees / 45.).floor() as int {
+	match (degrees / 45.).floor() as isize {
 		0 => "→".to_string(),
 		1 => "↗".to_string(),
 		2 => "↑".to_string(),
