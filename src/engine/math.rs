@@ -1,12 +1,12 @@
 use num::rational::Ratio;
 
-use std::f32::{atan2, sqrt, sin, cos, tan};
+use std::f32;
 use std::f32::consts::PI;
-use std::fmt::{Show, Formatter, Result};
+use std::fmt::{Formatter, Result};
 
 
 //hack
-use sfml::system::vector2::{Vector2f, Vector2i};
+use sfml::system::{Vector2f, Vector2i};
 
 pub type Coord = f32;
 pub type RawAngle = f32;
@@ -54,7 +54,7 @@ impl Vector2 {
 	}
 
 	pub fn polar(&self) -> Polar{
-		Polar::new(Angle::rad(atan2(self.y, self.x)), self.len())
+		Polar::new(Angle::rad(self.y.atan2(self.x)), self.len())
 	}
 
 	pub fn to_sfml_f(&self) -> Vector2f {
