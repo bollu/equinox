@@ -2,7 +2,8 @@ use num::rational::Ratio;
 
 use std::f32;
 use std::f32::consts::PI;
-use std::fmt::{Formatter, Result};
+use std::ops::{Add, Sub, Mul, Div, Neg};
+use std::fmt::{Debug, Formatter, Result};
 
 
 //hack
@@ -50,7 +51,7 @@ impl Vector2 {
 	}
 
 	pub fn len(&self) -> f32 {
-		sqrt(self.len_squared())
+		self.len_squared().sqrt()
 	}
 
 	pub fn polar(&self) -> Polar{
@@ -98,7 +99,7 @@ impl Neg<Vector2> for Vector2 {
 	}
 }
 
-impl Eq for Vector2{
+impl PartialEq for Vector2{
 	fn eq(&self, other: &Vector2) -> bool {
 		self.x == other.x && self.y == other.y
 	}
@@ -108,7 +109,7 @@ impl Eq for Vector2{
 	}
 }
 
-impl Show for Vector2 {
+impl Debug for Vector2 {
 	fn fmt(&self, formatter: &mut Formatter) -> Result {
 		let dirStr = angle_to_dir_str(&self.polar().angle);
 		write!(formatter.buf, "{{ {} | x: {:.2}, y:{:.2} }}", dirStr, self.x, self.y)
@@ -138,15 +139,15 @@ impl Angle {
 	}
 
 	pub fn sin(&self) -> f32 {
-		sin(self.theta)
+		self.theta.sin()
 	}
 
 	pub fn cos(&self) -> f32 {
-		cos(self.theta)
+		self.theta.cos()
 	}
 
 	pub fn tan(&self) -> f32 {
-		tan(self.theta)
+		self.theta.tan()
 	}
 
 	fn clamp(rad: RawAngle) -> RawAngle {
@@ -194,7 +195,7 @@ impl Neg<Angle> for Angle {
 }
 
 
-impl Show for Angle {
+impl Debug for Angle {
 	fn fmt(&self, formatter: &mut Formatter) -> Result {
 		
 		let normalizedAngle = angle_to_principal_domain(self.theta); 

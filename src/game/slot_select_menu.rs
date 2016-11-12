@@ -1,6 +1,6 @@
-use std::vec_ng::Vec;
+use std::vec::Vec;
 
-use engine::state::{State, EngineState, NoChange, StateTransition, IntStateData, EngineShutdown};
+use engine::state::{StateData, State, EngineState};
 use engine::resource_loader::{ResourceLoader};
 use engine::rendering::{RenderContext, RenderQueue};
 use engine::event_queue::{EventQueue};

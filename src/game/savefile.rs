@@ -1,10 +1,10 @@
-use std::io::fs::File;
-use std::io::Writer;
+use std::fs::File;
+use std::io::Write;
 use std::path::Path;
 use serialize::{json, Encodable, Decodable};
 use std::str::from_utf8;
 
-#[derive(Encodable, Decodable)]
+#[derive(RustcEncodable, RustcDecodable)]
 pub struct Savefile {
 	slot: isize,
 	open: bool,

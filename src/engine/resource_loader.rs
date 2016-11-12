@@ -26,7 +26,7 @@ impl ResourceLoader {
 		let font = self.get_resource(&key);
 
 		match *font {
-			Font(ref f) => f,
+			Resource::Font(ref f) => f,
 			_ => panic!("unable to locate font {}", key),
 		}
 	}

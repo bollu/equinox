@@ -1,13 +1,14 @@
 use std::collections::HashMap;
 use std::fs::File;
 use std::vec::Vec;
+use std::path::Path;
 
 pub type Key = String;
 
 
 #[derive(Debug)]
 pub enum Setting {
-	Int(int),
+	Int(isize),
 	Float(f32),
 	String(String),
 	Vector(f32, f32),
@@ -70,7 +71,7 @@ impl<'a> Settings<'a> {
 			},
 
 			'b' => {
-				let value = (valueStr == "true");
+				let value = valueStr == "true";
 				Bool(value)
 			},
 

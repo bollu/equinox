@@ -1,7 +1,7 @@
 //extern crate sfml;
 
 use engine::math::Vector2;
-use sfml::graphics::{RenderWindow, Color};
+use sfml::graphics::{RenderWindow, Color, Drawable};
 use sfml::window::{ContextSettings, VideoMode, event, WindowStyle};
 
 use std::collections::VecDeque;
@@ -69,7 +69,7 @@ pub struct RenderQueue<'a> {
 	// There was a colon at the end of Drawable before, it had
 	// (probably) something to do with opting out of builtin traits
 	// It was also in a couple of other locations too
-	renderers: VecDeque<&'a sfml::traits::Drawable>,
+	renderers: VecDeque<&'a Drawable>,
 	clear_color: Color,
 }
 
@@ -78,7 +78,7 @@ impl<'a> RenderQueue<'a> {
 		RenderQueue { renderers: VecDeque::new(), clear_color: Color::new_RGB(0, 0, 20) }
 	}
 
-	pub fn push(&mut self, renderer: &'a sfml::traits::Drawable) {
+	pub fn push(&mut self, renderer: &'a Drawable) {
 		self.renderers.push_back(renderer);
 	}
 

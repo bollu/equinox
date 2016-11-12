@@ -9,7 +9,7 @@ pub type StateId = isize;
 #[derive(Eq)]
 pub enum StateData {
 	NoStateData,
-	IntStateData(int),
+	IntStateData(isize),
 }
 
 #[derive(Eq)]
@@ -46,7 +46,7 @@ pub struct StateMachine {
 
 impl TransitionInfo {
 	pub fn new() -> TransitionInfo {
-		TransitionInfo { transitioning: false, next_state_id: 0, data: NoStateData }
+		TransitionInfo { transitioning: false, next_state_id: 0, data: StateData::NoStateData }
 	}
 }
 
@@ -89,7 +89,7 @@ impl StateMachine {
 		 
 		
 		match engine_state {
-			StateTransition(id, data) => {
+			EngineState::StateTransition(id, data) => {
 				self.transition_info.transitioning = true;
 				self.transition_info.data = data;
 				self.transition_info.next_state_id = id; 

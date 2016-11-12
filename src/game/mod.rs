@@ -1,5 +1,5 @@
 use sfml::graphics;
-use engine::resource_loader::{ResourceLoader, Font};
+use engine::resource_loader::{ResourceLoader, Resource};
 
 use engine::state::StateMachine;
 use engine::rendering::RenderContext;
@@ -16,7 +16,7 @@ pub mod savefile;
 
 pub fn load_resources(loader: &mut ResourceLoader) {
  	let obelix_font = graphics::Font::new_from_file("res/font/AlegreyaSansSC-Light.ttf").unwrap();
-    loader.add_resource("MenuFont".to_string(), Font(obelix_font));
+    loader.add_resource("MenuFont".to_string(), Resource::Font(obelix_font));
 }
 
 pub enum State {
