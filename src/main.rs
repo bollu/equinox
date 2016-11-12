@@ -1,7 +1,12 @@
 extern crate serialize;
 extern crate num;
-extern crate native;
-extern crate rsfml;
+// Couldn't find anything using this so ¯\_(ツ)_/¯
+//extern crate native;
+// This is grabbed from a .so file. When googling "librsfml" I literally
+// got 6 results, 1 from this project. It seems to have been renamed
+// so let's try to use that instead even if it looks like it will break
+// many things.
+//extern crate rsfml;
 extern crate collections;
 
 // idk wth these lines were used for, couldn't find any other references
