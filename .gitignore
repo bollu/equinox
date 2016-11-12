@@ -4,4 +4,4 @@ bin/equinox-tests
 sublime_*
 slot_*
 save_*
-bin/res/font/*
+bin/res/font/*target

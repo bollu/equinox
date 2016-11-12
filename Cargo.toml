@@ -1,0 +1,6 @@
+[package]
+name = "equinox"
+version = "0.1.0"
+authors = ["Jacob Karlsson <jacob.karlsson95@gmail.com>"]
+
+[dependencies]
