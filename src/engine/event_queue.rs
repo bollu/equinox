@@ -11,7 +11,7 @@ pub struct EventQueue<'a> {
 }
 
 impl<'a> EventQueue<'a> {
-	pub fn new() -> EventQueue {
+	pub fn new() -> EventQueue<'a> {
 		EventQueue { handlers: VecDeque::new() }
 	}
 	pub fn push(&mut self, handler : &'a mut EventHandler) {

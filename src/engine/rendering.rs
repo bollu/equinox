@@ -74,7 +74,7 @@ pub struct RenderQueue<'a> {
 }
 
 impl<'a> RenderQueue<'a> {
-	pub fn new() -> RenderQueue {
+	pub fn new() -> RenderQueue<'a> {
 		RenderQueue { renderers: VecDeque::new(), clear_color: Color::new_RGB(0, 0, 20) }
 	}
 
