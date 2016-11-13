@@ -17,15 +17,15 @@ pub enum Setting {
 	Error
 }
 
-pub struct Settings<'a> {
+pub struct Settings {
 	settings_path: Path,
 	key_value_pair: HashMap<Key, Setting>
 
 }
 
-impl<'a> Settings<'a> {
+impl Settings {
 
-	pub fn new(settings_path_raw: &str) -> Settings<'a>{
+	pub fn new(settings_path_raw: &str) -> Settings{
 		let path = Path::new(settings_path_raw);
 
 		if path.exists() {
@@ -41,7 +41,7 @@ impl<'a> Settings<'a> {
 	    }
 	}
 
-	pub fn get_setting<'a>(&'a mut self, name: Key, default_value: Setting) -> &'a mut Setting {
+	pub fn get_setting(&mut self, name: Key, default_value: Setting) -> &mut Setting {
 		return  self.key_value_pair.find_or_insert(name, default_value)
 	}
 
