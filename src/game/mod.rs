@@ -5,6 +5,8 @@ use engine::state::StateMachine;
 use engine::rendering::RenderContext;
 use engine::settings::Settings;
 
+use self::State::*;
+
 pub mod colors;
 pub mod main_menu;
 pub mod game_state;

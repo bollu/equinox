@@ -1,4 +1,4 @@
-extern crate serialize;
+extern crate rustc_serialize;
 extern crate num;
 // Couldn't find anything using this so ¯\_(ツ)_/¯
 //extern crate native;
