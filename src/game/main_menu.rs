@@ -1,6 +1,8 @@
 use std::vec::Vec;
 
 use engine::state::{StateData, State, EngineState};
+use engine::state::StateData::*;
+use engine::state::EngineState::*;
 
 use engine::resource_loader::{ResourceLoader};
 use engine::rendering::{RenderContext, RenderQueue};
@@ -8,9 +10,11 @@ use engine::rendering::{RenderContext, RenderQueue};
 use engine::event_queue::EventQueue;
 
 use sfml::graphics::Text;
+use self::MenuItemTag::*;
 
 use game::colors;
 use game::ui::{calculate_text_centering_x, MenuItem, SimpleMenuHandler};
+use game::State::*;
 use game;
 
 pub enum MenuItemTag {
@@ -62,7 +66,7 @@ impl<'a> MainMenu<'a>{
 		let y_spacing = (render_dim.y - current_y) / menu_names.len() as f32;
 		
 
-		for i in range(0, menu_names.len()) {	
+		for i in 0..menu_names.len() {	
 			let name = menu_names[i];
 			let tag = menu_tags[i];
 			let color = menu_back_colors[i];
@@ -84,8 +88,8 @@ impl<'a> MainMenu<'a>{
 
 	fn handle_click(tag: MenuItemTag) -> EngineState{
 		match tag {
-			TagPlay => StateTransition(game::SlotSelectStateID as isize, IntStateData(0)),
-			TagOptions => StateTransition(game::OptionsStateID as isize, NoStateData),
+			TagPlay => StateTransition(SlotSelectStateID as isize, IntStateData(0)),
+			TagOptions => StateTransition(OptionsStateID as isize, NoStateData),
 			TagQuit => EngineShutdown,
 		}
 	}

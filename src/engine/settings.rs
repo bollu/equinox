@@ -2,6 +2,7 @@ use std::collections::HashMap;
 use std::fs::File;
 use std::vec::Vec;
 use std::path::Path;
+use self::Setting::*;
 
 pub type Key = String;
 
@@ -49,12 +50,12 @@ impl<'a> Settings<'a> {
 		match name.char_at(0) {
 
 			'i' => {
-				let value = from_str::<int>(valueStr).unwrap();
+				let value = isize::from_str(valueStr).unwrap();
 				Int(value)
 			},
 
 			'f' => {
-				let value = from_str::<f32>(valueStr).unwrap();
+				let value = f32::from_str(valueStr).unwrap();
 				Float(value)
 			},
 
@@ -65,8 +66,8 @@ impl<'a> Settings<'a> {
 			'v' => {
 				let floatPair : Vec<&str> = valueStr.split(' ').collect();
 
-				let float1 = from_str::<f32>(*floatPair.get(0)).unwrap();
-				let float2 = from_str::<f32>(*floatPair.get(1)).unwrap();
+				let float1 = f32::from_str(*floatPair.get(0)).unwrap();
+				let float2 = f32::from_str(*floatPair.get(1)).unwrap();
 				Vector(float1, float2)
 			},
 

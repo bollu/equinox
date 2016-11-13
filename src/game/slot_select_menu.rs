@@ -1,6 +1,8 @@
 use std::vec::Vec;
 
 use engine::state::{StateData, State, EngineState};
+use engine::state::StateData::*;
+use engine::state::EngineState::*;
 use engine::resource_loader::{ResourceLoader};
 use engine::rendering::{RenderContext, RenderQueue};
 use engine::event_queue::{EventQueue};
@@ -9,6 +11,7 @@ use game;
 use game::colors;
 use game::ui::{MenuItem, SimpleMenuHandler};
 use game::NUM_SLOTS;
+use game::State::*;
 use game::savefile::{Savefile, read_save_from_disk, write_save_to_disk, save_exists};
 
 
@@ -34,7 +37,7 @@ impl<'a> SlotSelectMenu<'a> {
 		//space between menu items
 		let y_spacing = (render_dim.y - current_y) / NUM_SLOTS as f32;
 
-		for index in range(0, NUM_SLOTS) {
+		for index in 0..NUM_SLOTS {
 
 			let savefile = {
 				let save_path = gen_save_path(index);
@@ -77,7 +80,7 @@ impl<'a> SlotSelectMenu<'a> {
 	}
 
 	pub fn handle_click(data: isize) -> EngineState {
-		StateTransition(game::GameStateID as isize, IntStateData(data))
+		StateTransition(GameStateID as isize, IntStateData(data))
 	} 
 }
 

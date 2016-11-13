@@ -1,4 +1,6 @@
 use engine::state::{StateData, State, EngineState};
+use engine::state::StateData::*;
+use engine::state::EngineState::*;
 use engine::resource_loader::{ResourceLoader};
 use engine::settings::Settings;
 use engine::rendering::{RenderContext, RenderQueue};

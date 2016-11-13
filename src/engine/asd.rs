@@ -1,3 +1,4 @@
+use self::State::*;
 
  #[derive(Eq)]
 enum State {
