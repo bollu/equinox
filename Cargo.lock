@@ -3,7 +3,7 @@ name = "equinox"
 version = "0.1.0"
 dependencies = [
  "num 0.1.36 (registry+https://github.com/rust-lang/crates.io-index)",
- "rustc-serialize 0.3.21 (registry+https://github.com/rust-lang/crates.io-index)",
+ "rustc-serialize 0.3.22 (registry+https://github.com/rust-lang/crates.io-index)",
  "sfml 0.11.2 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
@@ -18,7 +18,7 @@ version = "0.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "csfml-system-sys 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
- "libc 0.2.17 (registry+https://github.com/rust-lang/crates.io-index)",
+ "libc 0.2.20 (registry+https://github.com/rust-lang/crates.io-index)",
  "sfml-types 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
@@ -29,7 +29,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "csfml-system-sys 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "csfml-window-sys 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
- "libc 0.2.17 (registry+https://github.com/rust-lang/crates.io-index)",
+ "libc 0.2.20 (registry+https://github.com/rust-lang/crates.io-index)",
  "sfml-types 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
@@ -39,7 +39,7 @@ version = "0.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "csfml-system-sys 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
- "libc 0.2.17 (registry+https://github.com/rust-lang/crates.io-index)",
+ "libc 0.2.20 (registry+https://github.com/rust-lang/crates.io-index)",
  "sfml-types 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
@@ -48,7 +48,7 @@ name = "csfml-system-sys"
 version = "0.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
- "libc 0.2.17 (registry+https://github.com/rust-lang/crates.io-index)",
+ "libc 0.2.20 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
@@ -57,13 +57,13 @@ version = "0.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "csfml-system-sys 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
- "libc 0.2.17 (registry+https://github.com/rust-lang/crates.io-index)",
+ "libc 0.2.20 (registry+https://github.com/rust-lang/crates.io-index)",
  "sfml-types 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
 name = "libc"
-version = "0.2.17"
+version = "0.2.20"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
@@ -86,8 +86,8 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "num-integer 0.1.32 (registry+https://github.com/rust-lang/crates.io-index)",
  "num-traits 0.1.36 (registry+https://github.com/rust-lang/crates.io-index)",
- "rand 0.3.14 (registry+https://github.com/rust-lang/crates.io-index)",
- "rustc-serialize 0.3.21 (registry+https://github.com/rust-lang/crates.io-index)",
+ "rand 0.3.15 (registry+https://github.com/rust-lang/crates.io-index)",
+ "rustc-serialize 0.3.22 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
@@ -96,7 +96,7 @@ version = "0.1.35"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "num-traits 0.1.36 (registry+https://github.com/rust-lang/crates.io-index)",
- "rustc-serialize 0.3.21 (registry+https://github.com/rust-lang/crates.io-index)",
+ "rustc-serialize 0.3.22 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
@@ -124,7 +124,7 @@ dependencies = [
  "num-bigint 0.1.35 (registry+https://github.com/rust-lang/crates.io-index)",
  "num-integer 0.1.32 (registry+https://github.com/rust-lang/crates.io-index)",
  "num-traits 0.1.36 (registry+https://github.com/rust-lang/crates.io-index)",
- "rustc-serialize 0.3.21 (registry+https://github.com/rust-lang/crates.io-index)",
+ "rustc-serialize 0.3.22 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
@@ -134,15 +134,15 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
 name = "rand"
-version = "0.3.14"
+version = "0.3.15"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
- "libc 0.2.17 (registry+https://github.com/rust-lang/crates.io-index)",
+ "libc 0.2.20 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
 name = "rustc-serialize"
-version = "0.3.21"
+version = "0.3.22"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
@@ -156,7 +156,7 @@ dependencies = [
  "csfml-network-sys 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "csfml-system-sys 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "csfml-window-sys 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
- "libc 0.2.17 (registry+https://github.com/rust-lang/crates.io-index)",
+ "libc 0.2.20 (registry+https://github.com/rust-lang/crates.io-index)",
  "sfml-types 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
@@ -172,7 +172,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 "checksum csfml-network-sys 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)" = "bd11432924734b45b6478ee384ad84591274a9f277997771ca2cd57ebf03940e"
 "checksum csfml-system-sys 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)" = "f613309f92bca2549e066286580d0ab69809afba4675c3fc0c7943409c77206d"
 "checksum csfml-window-sys 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)" = "f74f961b69749ca7e62ad66b7959ab62f63847826d8cb3a068250fcbd1c3fbcf"
-"checksum libc 0.2.17 (registry+https://github.com/rust-lang/crates.io-index)" = "044d1360593a78f5c8e5e710beccdc24ab71d1f01bc19a29bcacdba22e8475d8"
+"checksum libc 0.2.20 (registry+https://github.com/rust-lang/crates.io-index)" = "684f330624d8c3784fb9558ca46c4ce488073a8d22450415c5eb4f4cfb0d11b5"
 "checksum num 0.1.36 (registry+https://github.com/rust-lang/crates.io-index)" = "bde7c03b09e7c6a301ee81f6ddf66d7a28ec305699e3d3b056d2fc56470e3120"
 "checksum num-bigint 0.1.35 (registry+https://github.com/rust-lang/crates.io-index)" = "88b14378471f7c2adc5262f05b4701ef53e8da376453a8d8fee48e51db745e49"
 "checksum num-complex 0.1.35 (registry+https://github.com/rust-lang/crates.io-index)" = "f0c78e054dd19c3fd03419ade63fa661e9c49bb890ce3beb4eee5b7baf93f92f"
@@ -180,7 +180,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 "checksum num-iter 0.1.32 (registry+https://github.com/rust-lang/crates.io-index)" = "287a1c9969a847055e1122ec0ea7a5c5d6f72aad97934e131c83d5c08ab4e45c"
 "checksum num-rational 0.1.35 (registry+https://github.com/rust-lang/crates.io-index)" = "54ff603b8334a72fbb27fe66948aac0abaaa40231b3cecd189e76162f6f38aaf"
 "checksum num-traits 0.1.36 (registry+https://github.com/rust-lang/crates.io-index)" = "a16a42856a256b39c6d3484f097f6713e14feacd9bfb02290917904fae46c81c"
-"checksum rand 0.3.14 (registry+https://github.com/rust-lang/crates.io-index)" = "2791d88c6defac799c3f20d74f094ca33b9332612d9aef9078519c82e4fe04a5"
-"checksum rustc-serialize 0.3.21 (registry+https://github.com/rust-lang/crates.io-index)" = "bff9fc1c79f2dec76b253273d07682e94a978bd8f132ded071188122b2af9818"
+"checksum rand 0.3.15 (registry+https://github.com/rust-lang/crates.io-index)" = "022e0636ec2519ddae48154b028864bdce4eaf7d35226ab8e65c611be97b189d"
+"checksum rustc-serialize 0.3.22 (registry+https://github.com/rust-lang/crates.io-index)" = "237546c689f20bb44980270c73c3b9edd0891c1be49cc1274406134a66d3957b"
 "checksum sfml 0.11.2 (registry+https://github.com/rust-lang/crates.io-index)" = "796ac61674669d1cbc9a444af283aa622c8bf018692a9ec4dc39ff9445615469"
 "checksum sfml-types 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)" = "d81c513af1beb0d4105ac8269dc0f8405d0e1bbf0d589af1b882fb515d7c5758"
