@@ -8,7 +8,6 @@ extern crate num;
 // many things.
 //extern crate rsfml;
 extern crate sfml;
-extern crate collections;
 
 // idk wth these lines were used for, couldn't find any other references
 // and the compiler complained. If the code doesn't use it maybe the
@@ -27,6 +26,8 @@ use engine::rendering;
 use engine::event_queue;
 use engine::state;
 use engine::state::EngineState::EngineShutdown;
+
+use std::collections;
 
 //use engine::math;
 
