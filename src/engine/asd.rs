@@ -1,6 +1,6 @@
 use self::State::*;
 
- #[derive(Eq)]
+ #[derive(Eq, PartialEq)]
 enum State {
 	Attack, //transitioning to sustain
 	Sustain, //in stasis

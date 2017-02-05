@@ -6,13 +6,13 @@ use engine::settings::Settings;
 
 pub type StateId = isize;
 
-#[derive(Eq)]
+#[derive(Eq, PartialEq)]
 pub enum StateData {
 	NoStateData,
 	IntStateData(isize),
 }
 
-#[derive(Eq)]
+#[derive(Eq, PartialEq)]
 pub enum EngineState {
 	StateTransition(StateId, StateData), //UID of state, Data to be sent
 	EngineShutdown, //shut down and close
