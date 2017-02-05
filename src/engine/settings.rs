@@ -19,8 +19,8 @@ pub enum Setting {
 }
 
 pub struct Settings {
-    settings_path: Path,
     key_value_pair: HashMap<Key, Setting>,
+    settings_path: Path,
 }
 
 impl Settings {
