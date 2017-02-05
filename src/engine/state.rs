@@ -8,99 +8,109 @@ pub type StateId = isize;
 
 #[derive(Eq, PartialEq)]
 pub enum StateData {
-	NoStateData,
-	IntStateData(isize),
+    NoStateData,
+    IntStateData(isize),
 }
 
 #[derive(Eq, PartialEq)]
 pub enum EngineState {
-	StateTransition(StateId, StateData), //UID of state, Data to be sent
-	EngineShutdown, //shut down and close
-	NoChange
+    StateTransition(StateId, StateData), //UID of state, Data to be sent
+    EngineShutdown, //shut down and close
+    NoChange,
 }
 
 
 pub trait State {
-	//TODO: make these opposites...
-	fn queue_event_handlers(&mut self, queue: &mut EventQueue);
-	fn queue_renderers(&mut self, queue: &mut RenderQueue);
+    //TODO: make these opposites...
+    fn queue_event_handlers(&mut self, queue: &mut EventQueue);
+    fn queue_renderers(&mut self, queue: &mut RenderQueue);
 
-	fn startup(&mut self, _data: StateData) { }
-	fn shutdown(&mut self) { }
+    fn startup(&mut self, _data: StateData) {}
+    fn shutdown(&mut self) {}
 
-	fn tick(&mut self, dt: f32) -> EngineState;
+    fn tick(&mut self, dt: f32) -> EngineState;
 }
 
 struct TransitionInfo {
-	transitioning: bool,
-	next_state_id: StateId,
-	data: StateData,
+    transitioning: bool,
+    next_state_id: StateId,
+    data: StateData,
 }
 
 pub struct StateMachine {
-	states: HashMap<StateId, Box<State>>,
-	current_id: StateId,
-	transition_info: TransitionInfo,
-
+    states: HashMap<StateId, Box<State>>,
+    current_id: StateId,
+    transition_info: TransitionInfo,
 }
 
 impl TransitionInfo {
-	pub fn new() -> TransitionInfo {
-		TransitionInfo { transitioning: false, next_state_id: 0, data: StateData::NoStateData }
-	}
+    pub fn new() -> TransitionInfo {
+        TransitionInfo {
+            transitioning: false,
+            next_state_id: 0,
+            data: StateData::NoStateData,
+        }
+    }
 }
 
 impl StateMachine {
-	pub fn uninitialized() -> StateMachine {
-		StateMachine { states: HashMap::new(), current_id: 0, transition_info: TransitionInfo::new() }
-	}
-	
-	pub fn set_default_state(&mut self, id: StateId) {
-		self.current_id = id;
-	}
+    pub fn uninitialized() -> StateMachine {
+        StateMachine {
+            states: HashMap::new(),
+            current_id: 0,
+            transition_info: TransitionInfo::new(),
+        }
+    }
 
-	pub fn add_state(&mut self, id: StateId, state: Box<State>) {
-		self.states.insert(id, state);
-	}
+    pub fn set_default_state(&mut self, id: StateId) {
+        self.current_id = id;
+    }
 
-	pub fn tick(&mut self, 
-				dt: f32, event_queue: &mut EventQueue, render_queue: &mut RenderQueue) -> EngineState {
-		
-		if self.transition_info.transitioning {
-			//ask current state to shutdown
-			self.get_current_state().shutdown();
+    pub fn add_state(&mut self, id: StateId, state: Box<State>) {
+        self.states.insert(id, state);
+    }
 
-			self.current_id = self.transition_info.next_state_id;
-			self.transition_info.transitioning = false;
-			
-			//now that the current_id has changed, let's launch the next state
-			self.get_current_state().startup(self.transition_info.data);
+    pub fn tick(&mut self,
+                dt: f32,
+                event_queue: &mut EventQueue,
+                render_queue: &mut RenderQueue)
+                -> EngineState {
 
-		}
+        if self.transition_info.transitioning {
+            //ask current state to shutdown
+            self.get_current_state().shutdown();
 
-		let engine_state = {
-			let current_state = self.get_current_state();
+            self.current_id = self.transition_info.next_state_id;
+            self.transition_info.transitioning = false;
 
-			current_state.queue_event_handlers(event_queue);
-			current_state.queue_renderers(render_queue);
+            //now that the current_id has changed, let's launch the next state
+            self.get_current_state().startup(self.transition_info.data);
 
-			current_state.tick(dt)
-		};
-		 
-		
-		match engine_state {
-			EngineState::StateTransition(id, data) => {
-				self.transition_info.transitioning = true;
-				self.transition_info.data = data;
-				self.transition_info.next_state_id = id; 
-			},
-			_ => {} 
-		}
+        }
 
-		engine_state
-	}
+        let engine_state = {
+            let current_state = self.get_current_state();
 
-	fn get_current_state<'a>(&'a mut self) -> &'a mut Box<State> {
-		self.states.get_mut(&self.current_id)	
-	}
+            current_state.queue_event_handlers(event_queue);
+            current_state.queue_renderers(render_queue);
+
+            current_state.tick(dt)
+        };
+
+
+        match engine_state {
+            EngineState::StateTransition(id, data) => {
+                self.transition_info.transitioning = true;
+                self.transition_info.data = data;
+                self.transition_info.next_state_id = id;
+            }
+            _ => {} 
+        }
+
+        engine_state
+    }
+
+    fn get_current_state<'a>(&'a mut self) -> &'a mut Box<State> {
+        self.states.get_mut(&self.current_id)
+    }
 }
