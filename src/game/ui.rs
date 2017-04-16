@@ -1,5 +1,5 @@
-use rsfml::graphics::{Color, Text, RectangleShape, Font};
-use rsfml::window::event;
+use sfml::graphics::{Color, Text, RectangleShape, Font};
+use sfml::window::event;
 use engine::event_queue::EventHandler;
 use game::colors;
 use engine::asd::ASD;
@@ -12,10 +12,10 @@ pub fn calculate_text_centering_x<'b>(text: &'b Text, total_x: f32) -> f32{
 }
 
 pub struct MenuItem<'a, T> {
-	priv text: Text<'a>,
-	priv back: RectangleShape<'a>,
-	priv default_color: Color,
-	priv animator: ASD,
+	text: Text<'a>,
+	back: RectangleShape<'a>,
+	default_color: Color,
+	animator: ASD,
 
 	data: T,
 }
@@ -28,7 +28,7 @@ pub struct SimpleMenuHandler {
 }
 
 impl<'a, T> MenuItem<'a, T> {
-	pub fn new(data: T, label: &str, font: &'a Font, font_size: uint, text_color: &Color, back_color: &Color) -> MenuItem<'a, T> {
+	pub fn new(data: T, label: &str, font: &'a Font, font_size: usize, text_color: &Color, back_color: &Color) -> MenuItem<'a, T> {
 		
 		let mut text = Text::new_init(label, font, font_size).unwrap();
 		text.set_color(text_color);

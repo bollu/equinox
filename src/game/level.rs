@@ -1,6 +1,7 @@
-use std::vec_ng::Vec;
+use std::vec::Vec;
 use engine::math::Vector2;
 use engine::rendering::RenderQueue;
+use self::LevelState::*;
 
 use heart::player::Player;
 

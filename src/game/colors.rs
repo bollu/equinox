@@ -1,4 +1,4 @@
-use rsfml::graphics::Color;
+use sfml::graphics::Color;
 
 pub static black : Color =  Color { red: 34, green: 34, blue: 34, alpha: 255 };
 pub static gray : Color = Color {red: 94, green: 102, blue: 105, alpha: 255 };

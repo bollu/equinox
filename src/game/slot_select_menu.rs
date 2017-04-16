@@ -1,6 +1,8 @@
-use std::vec_ng::Vec;
+use std::vec::Vec;
 
-use engine::state::{State, EngineState, NoChange, StateTransition, IntStateData, EngineShutdown};
+use engine::state::{StateData, State, EngineState};
+use engine::state::StateData::*;
+use engine::state::EngineState::*;
 use engine::resource_loader::{ResourceLoader};
 use engine::rendering::{RenderContext, RenderQueue};
 use engine::event_queue::{EventQueue};
@@ -9,11 +11,12 @@ use game;
 use game::colors;
 use game::ui::{MenuItem, SimpleMenuHandler};
 use game::NUM_SLOTS;
+use game::State::*;
 use game::savefile::{Savefile, read_save_from_disk, write_save_to_disk, save_exists};
 
 
 pub struct SlotSelectMenu<'a> {
-	priv menu_items: Vec<MenuItem<'a, int>>,
+	menu_items: Vec<MenuItem<'a, isize>>,
 	handler: SimpleMenuHandler,
 
 }
@@ -23,7 +26,7 @@ impl<'a> SlotSelectMenu<'a> {
 
 		let top_padding = 0.;
 		let font_size_menu = 40;
-		let font = loader.get_font(~"MenuFont");
+		let font = loader.get_font("MenuFont".to_string());
 
 		let render_dim = render_ctx.viewport_dim;
 		let mut current_y = top_padding;
@@ -34,7 +37,7 @@ impl<'a> SlotSelectMenu<'a> {
 		//space between menu items
 		let y_spacing = (render_dim.y - current_y) / NUM_SLOTS as f32;
 
-		for index in range(0, NUM_SLOTS) {
+		for index in 0..NUM_SLOTS {
 
 			let savefile = {
 				let save_path = gen_save_path(index);
@@ -72,12 +75,12 @@ impl<'a> SlotSelectMenu<'a> {
 		}
 	}
 
-	pub fn create_first_time_save(index: int) -> Savefile{
+	pub fn create_first_time_save(index: isize) -> Savefile{
 		Savefile::new(index, true, 0)
 	}
 
-	pub fn handle_click(data: int) -> EngineState {
-		StateTransition(game::GameStateID as int, IntStateData(data))
+	pub fn handle_click(data: isize) -> EngineState {
+		StateTransition(GameStateID as isize, IntStateData(data))
 	} 
 }
 
@@ -113,6 +116,6 @@ impl<'a> State for SlotSelectMenu<'a> {
 }
 
 
-fn gen_save_path(index: int) -> ~str {
+fn gen_save_path(index: isize) -> String {
 	"slot_" + index.to_str()
 }

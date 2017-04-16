@@ -1,0 +1,9 @@
+[package]
+name = "equinox"
+version = "0.1.0"
+authors = ["Jacob Karlsson <jacob.karlsson95@gmail.com>"]
+
+[dependencies]
+num = "0.1"
+sfml = "0.11.2"
+rustc-serialize = "0.3.22"

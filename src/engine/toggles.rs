@@ -1,5 +1,5 @@
 pub struct SustainedToggle {
-	on: bool	
+    on: bool,
 }
 
 /*

@@ -1,9 +1,11 @@
-use rsfml::window::keyboard;
+use sfml::window::Key;
 
-use rsfml::window::event;
+use sfml::window::event;
 
 use engine::event_queue::{EventHandler};
 use engine::settings::Settings;
+
+type keyboard = Key;
 
 pub enum GameEvents {
 	PlayerLeft,
@@ -53,7 +55,7 @@ impl GameEventLayer {
 		self.meta_quit
 	}
 	
-	pub fn handle_key_press(&mut self, key: keyboard::Key) {
+	pub fn handle_key_press(&mut self, key: Key) {
 		match key {
 			keyboard::Up => { self.facing_top = true },
 			keyboard::Left => { self.moving_left = true },
@@ -64,7 +66,7 @@ impl GameEventLayer {
 		};
 	}
 
-	pub fn handle_key_release(&mut self, key: keyboard::Key) {
+	pub fn handle_key_release(&mut self, key: Key) {
 		match key {
 			keyboard::Up => { self.facing_top = false },
 			keyboard::Left => { self.moving_left = false },

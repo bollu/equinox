@@ -1,4 +1,6 @@
-use engine::state::{State, EngineState, NoChange, EngineShutdown, StateData, IntStateData};
+use engine::state::{StateData, State, EngineState};
+use engine::state::StateData::*;
+use engine::state::EngineState::*;
 use engine::resource_loader::{ResourceLoader};
 use engine::settings::Settings;
 use engine::rendering::{RenderContext, RenderQueue};
@@ -31,7 +33,7 @@ impl<'a> State for GameState<'a> {
 	fn startup(&mut self, data: StateData) { 
 		let value = match data {
 			IntStateData(i) => i,
-			_ => fail!()
+			_ => panic!()
 		};
 	}
 

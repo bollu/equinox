@@ -1,15 +1,23 @@
-extern crate serialize;
+extern crate rustc_serialize;
 extern crate num;
-extern crate native;
-extern crate rsfml;
-extern crate collections;
+// Couldn't find anything using this so ¯\_(ツ)_/¯
+//extern crate native;
+// This is grabbed from a .so file. When googling "librsfml" I literally
+// got 6 results, 1 from this project. It seems to have been renamed
+// so let's try to use that instead even if it looks like it will break
+// many things.
+//extern crate rsfml;
+extern crate sfml;
 
-#[feature(phase)] extern crate log;
-#[phase(syntax, link)]
+// idk wth these lines were used for, couldn't find any other references
+// and the compiler complained. If the code doesn't use it maybe the
+// compiler does?
+//#[feature(phase)]extern crate log;
+//#[phase(syntax, link)]
 
 
 
-use rsfml::window::{event};
+use sfml::window::{event};
 
 use engine::resource_loader;
 //use engine::world;
@@ -17,7 +25,9 @@ use engine::settings;
 use engine::rendering;
 use engine::event_queue;
 use engine::state;
-use engine::state::EngineShutdown;
+use engine::state::EngineState::EngineShutdown;
+
+use std::collections;
 
 //use engine::math;
 
@@ -26,8 +36,8 @@ pub mod game;
 pub mod heart;
 
 fn main () -> () {
-    let mut settings = settings::Settings::new(~"settings");
-    let mut window =  rendering::Window::new(800, 600, ~"equinox", false);
+    let mut settings = settings::Settings::new("settings".to_string());
+    let mut window =  rendering::Window::new(800, 600, "equinox".to_string(), false);
     let mut event_queue = event_queue::EventQueue::new();
     let mut render_queue = rendering::RenderQueue::new();
     let mut resource_loader = resource_loader::ResourceLoader::new();
