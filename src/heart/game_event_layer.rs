@@ -1,6 +1,6 @@
 use sfml::window::Key;
 
-use sfml::window::event;
+use sfml::window::Event;
 
 use engine::event_queue::{EventHandler};
 use engine::settings::Settings;
@@ -78,13 +78,13 @@ impl GameEventLayer {
 }
 
 impl EventHandler for GameEventLayer {
-	fn handle_event(&mut self, event : &event::Event) {
+	fn handle_event(&mut self, event : &Event) {
 
 		match *event {
-			event::KeyPressed { code, .. }  => self.handle_key_press(code),
-			event::KeyReleased { code, .. }  => self.handle_key_release(code),
+			Event::KeyPressed { code, .. }  => self.handle_key_press(code),
+			Event::KeyReleased { code, .. }  => self.handle_key_release(code),
 
-			event::Closed => self.meta_quit = true,
+			Event::Closed => self.meta_quit = true,
 
 			_ => return
 		};

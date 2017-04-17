@@ -1,5 +1,5 @@
 use sfml::graphics::{Color, Text, RectangleShape, Font};
-use sfml::window::event;
+use sfml::window::Event;
 use engine::event_queue::EventHandler;
 use game::colors;
 use engine::asd::ASD;
@@ -100,18 +100,18 @@ impl SimpleMenuHandler {
 }
 
 impl EventHandler for SimpleMenuHandler {
-	fn handle_event(&mut self, event : &event::Event) {
+	fn handle_event(&mut self, event : &Event) {
 		match *event {
-			event::MouseMoved { x, y } => {
+			Event::MouseMoved { x, y } => {
 				self.x = x as f32; 
 				self.y = y as f32;
 			},
 
-			event::MouseButtonPressed {..} => {
+			Event::MouseButtonPressed {..} => {
 				self.clicked = true;
 			},
 
-			event::Closed => {
+			Event::Closed => {
 				self.window_closed = true;
 			}
 

@@ -15,10 +15,6 @@ extern crate sfml;
 //#[feature(phase)]extern crate log;
 //#[phase(syntax, link)]
 
-
-
-use sfml::window::{event};
-
 use engine::resource_loader;
 //use engine::world;
 use engine::settings;
@@ -57,7 +53,12 @@ fn main () -> () {
             match event {
                 //HACK - this should be removed..
                 //event::Closed => window.close(),
-                event::NoEvent => break,
+                
+                // I'm not sure what the above comment is talking
+                // about, but NoEvent is removed in favor of options
+                // https://github.com/jeremyletang/rust-sfml/commit/a0649ba936879041619e2ab9b3c569bdd16c0851
+                // Now this never breaks?
+                //event::NoEvent => break,
 
                 _ => { event_queue.send_event(&event) }
             }

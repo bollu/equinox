@@ -2,7 +2,7 @@
 
 use engine::math::Vector2;
 use sfml::graphics::{RenderWindow, Color, Drawable};
-use sfml::window::{ContextSettings, VideoMode, event, WindowStyle};
+use sfml::window::{ContextSettings, VideoMode, Event, WindowStyle};
 
 use std::collections::VecDeque;
 
@@ -32,7 +32,7 @@ impl Window {
         self.window.is_open()
     }
 
-    pub fn poll(&mut self) -> event::Event {
+    pub fn poll(&mut self) -> Event {
         self.window.poll_event()
     }
 

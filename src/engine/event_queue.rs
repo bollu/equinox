@@ -1,9 +1,9 @@
-use sfml::window::event;
+use sfml::window::Event;
 
 use std::collections::VecDeque;
 
 pub trait EventHandler {
-    fn handle_event(&mut self, event: &event::Event);
+    fn handle_event(&mut self, event: &Event);
 }
 
 pub struct EventQueue<'a> {
@@ -19,7 +19,7 @@ impl<'a> EventQueue<'a> {
     }
 
 
-    pub fn send_event(&mut self, event: &event::Event) {
+    pub fn send_event(&mut self, event: &Event) {
         for handler in self.handlers.mut_iter() {
             handler.handle_event(event);
         }
