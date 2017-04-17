@@ -1,13 +1,13 @@
 use sfml::graphics::Color;
 
-pub static black : Color =  Color { red: 34, green: 34, blue: 34, alpha: 255 };
-pub static gray : Color = Color {red: 94, green: 102, blue: 105, alpha: 255 };
-pub static navy : Color = Color {red:75, green: 62, blue: 77, alpha: 255 };
-pub static blue : Color = Color { red: 30, green: 140, blue: 147, alpha: 255 };
-pub static orange : Color = Color { red: 215, green: 79, blue: 51, alpha: 255 };
-pub static red : Color = Color { red: 204, green: 51, blue: 63, alpha: 255 };
-pub static green : Color = Color { red: 86, green: 205, blue: 38, alpha: 255 };
-pub static dark_green : Color = Color { red: 54, green: 171, blue: 138, alpha: 255 };
-pub static yellow : Color = Color { red: 222, green: 239, blue: 187, alpha: 255 };
-pub static white : Color = Color { red: 250, green: 250, blue: 250, alpha: 255 };
-pub static invisible : Color = Color { red: 0, green: 0, blue: 0, alpha: 0 };
+pub static black : Color =  Color { r: 34, g: 34, b: 34, a: 255 };
+pub static gray : Color = Color {r: 94, g: 102, b: 105, a: 255 };
+pub static navy : Color = Color {r:75, g: 62, b: 77, a: 255 };
+pub static blue : Color = Color { r: 30, g: 140, b: 147, a: 255 };
+pub static orange : Color = Color { r: 215, g: 79, b: 51, a: 255 };
+pub static red : Color = Color { r: 204, g: 51, b: 63, a: 255 };
+pub static green : Color = Color { r: 86, g: 205, b: 38, a: 255 };
+pub static dark_green : Color = Color { r: 54, g: 171, b: 138, a: 255 };
+pub static yellow : Color = Color { r: 222, g: 239, b: 187, a: 255 };
+pub static white : Color = Color { r: 250, g: 250, b: 250, a: 255 };
+pub static invisible : Color = Color { r: 0, g: 0, b: 0, a: 0 };
