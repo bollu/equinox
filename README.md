@@ -1,6 +1,10 @@
 Equniox
 =======
 
+[![Build Status](https://travis-ci.org/bollu/equinox.png?branch=master)](https://travis-ci.org/bollu/equinox)
+
+
+
 A project to experiment with [Rust](http://static.rust-lang.org/doc/master/tutorial.html), [Carmack's ideas](http://www.youtube.com/watch?v=1PhArSujR_A) and, well, build a game.
 
 Architecture (hah!)
