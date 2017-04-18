@@ -79,6 +79,8 @@ impl Vector2 {
 }
 
 impl Add for Vector2 {
+    type Output = Vector2;
+
     fn add(&self, rhs: &Vector2) -> Vector2 {
         Vector2 {
             x: self.x + rhs.x,
@@ -88,6 +90,8 @@ impl Add for Vector2 {
 }
 
 impl Sub for Vector2 {
+    type Output = Vector2;
+
     fn sub(&self, rhs: &Vector2) -> Vector2 {
         Vector2 {
             x: self.x - rhs.x,
@@ -97,6 +101,8 @@ impl Sub for Vector2 {
 }
 
 impl Mul for Vector2 {
+    type Output = Vector2;
+
     fn mul(&self, rhs: &f32) -> Vector2 {
         Vector2 {
             x: self.x * (*rhs),
@@ -107,6 +113,8 @@ impl Mul for Vector2 {
 
 
 impl Div for Vector2 {
+    type Output = Vector2;
+
     fn div(&self, rhs: &f32) -> Vector2 {
         Vector2 {
             x: self.x / (*rhs),
@@ -116,6 +124,8 @@ impl Div for Vector2 {
 }
 
 impl Neg for Vector2 {
+    type Output = Vector2;
+
     fn neg(&self) -> Vector2 {
         Vector2 {
             x: -self.x,
@@ -191,18 +201,24 @@ impl Angle {
 
 
 impl Add for Angle {
+    type Output = Angle;
+
     fn add(&self, rhs: &Angle) -> Angle {
         Angle { theta: Angle::clamp(self.theta + rhs.theta) }
     }
 }
 
 impl Sub for Angle {
+    type Output = Angle;
+
     fn sub(&self, rhs: &Angle) -> Angle {
         Angle { theta: Angle::clamp(self.theta - rhs.theta) }
     }
 }
 
 impl Mul for Angle {
+    type Output = Angle;
+
     fn mul(&self, rhs: &f32) -> Angle {
         Angle { theta: Angle::clamp(self.theta * *rhs) }
     }
@@ -210,6 +226,8 @@ impl Mul for Angle {
 
 
 impl Div for Angle {
+    type Output = Angle;
+
     fn div(&self, rhs: &f32) -> Angle {
         //clamp if divided by negative values
         Angle { theta: Angle::clamp(self.theta / *rhs) }
@@ -217,6 +235,8 @@ impl Div for Angle {
 }
 
 impl Neg for Angle {
+    type Output = Angle;
+
     fn neg(&self) -> Angle {
         Angle { theta: Angle::clamp(-self.theta) }
     }
@@ -325,6 +345,8 @@ impl Polar {
 
 //polar by polar multiplication
 impl Mul for Polar {
+    type Output = Polar;
+
     fn mul(&self, rhs: &Polar) -> Polar {
         Polar {
             angle: self.angle + rhs.angle,
@@ -335,6 +357,8 @@ impl Mul for Polar {
 
 
 impl Div for Polar {
+    type Output = Polar;
+
     fn div(&self, rhs: &Polar) -> Polar {
         Polar {
             angle: self.angle - rhs.angle,
@@ -344,6 +368,8 @@ impl Div for Polar {
 }
 
 impl Neg for Polar {
+    type Output = Polar;
+
     fn neg(&self) -> Polar {
         Polar {
             angle: -self.angle,
