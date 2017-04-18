@@ -5,5 +5,4 @@ pub mod resource_loader;
 pub mod state;
 pub mod settings;
 pub mod asd;
-pub mod interpolation;
 pub mod double_buffer;

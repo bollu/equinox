@@ -72,6 +72,6 @@ impl<'a> PlayerRenderer<'a> {
 	} 
 
 	pub fn update(&mut self, repr: &PlayerRepr, dt: f32) {
-		self.render.set_position(&repr.get_position().to_sfml_f())
+		self.render.set_position(&repr.get_position())
 	}
 }

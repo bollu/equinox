@@ -7,4 +7,3 @@ authors = ["Jacob Karlsson <jacob.karlsson95@gmail.com>"]
 num = "0.1"
 sfml = "0.12.0"
 rustc-serialize = "0.3.23"
-nalgebra = "0.11.2"
