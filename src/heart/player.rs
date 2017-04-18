@@ -1,4 +1,4 @@
-use engine::math::{Vector2, Angle};
+use engine::math::Vector2;
 use heart::newtonian::Motion;
 
 use game::colors;
