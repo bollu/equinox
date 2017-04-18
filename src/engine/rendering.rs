@@ -2,7 +2,7 @@
 
 use engine::math::Vector2;
 use sfml::graphics::{RenderWindow, Color, Drawable};
-use sfml::window::{ContextSettings, VideoMode, Event, WindowStyle};
+use sfml::window::{ContextSettings, VideoMode, Event, Style};
 
 use std::collections::VecDeque;
 
@@ -18,10 +18,10 @@ impl Window {
     pub fn new(width: usize, height: usize, title: String, fullscreen: bool) -> Window {
 
         let videoMode = VideoMode::new_init(width, height, 32);
-        let style: WindowStyle = if fullscreen {
-            WindowStyle::FULLSCREEN
+        let style: Style = if fullscreen {
+            Style::FULLSCREEN
         } else {
-            WindowStyle::CLOSE
+            Style::CLOSE
         };
         let setting = ContextSettings::default();
 
