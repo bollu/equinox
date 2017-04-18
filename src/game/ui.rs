@@ -8,7 +8,7 @@ use engine::rendering::RenderQueue;
 //UI code corrupts. pretty UI code corrupts absolutely. 
 
 pub fn calculate_text_centering_x<'b>(text: &'b Text, total_x: f32) -> f32{
-	total_x * 0.5 - text.get_local_bounds().width * 0.5
+	total_x * 0.5 - text.local_bounds().width * 0.5
 }
 
 pub struct MenuItem<'a, T> {

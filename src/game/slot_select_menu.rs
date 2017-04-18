@@ -117,5 +117,5 @@ impl<'a> State for SlotSelectMenu<'a> {
 
 
 fn gen_save_path(index: isize) -> String {
-	"slot_" + index.to_str()
+	format!("slot_{}", index)
 }
