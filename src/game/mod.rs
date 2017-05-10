@@ -12,7 +12,6 @@ pub mod main_menu;
 pub mod game_state;
 pub mod slot_select_menu;
 pub mod level;
-pub mod terrain;
 pub mod ui;
 pub mod savefile;
 
